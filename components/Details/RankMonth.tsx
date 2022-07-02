@@ -8,7 +8,7 @@ interface PropsType {
 
 const RankMonth: FC<PropsType> = ({ top_manga_month }) => {
   return (
-    <div className="w-[320px] border-2 p-2">
+    <div className="lg:w-[320px] w-full border-2 p-2 mt-4 lg:mt-0">
       <h1 className="my-4 text-center font-semibold text-xl">Top tháng</h1>
       <hr />
       <ul>

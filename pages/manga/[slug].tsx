@@ -5,6 +5,7 @@ import { getRankApi } from "../../api/rank";
 import InfoManga from "../../components/Details/InfoManga";
 import RankMonth from "../../components/Details/RankMonth";
 import { IsBrowser } from "../../components/IsBrowser";
+import Meta from "../../components/Meta";
 import MainLayout from "../../layout/MainLayout";
 import { ComicType } from "../../models/comics";
 import { Details } from "../../models/details";
@@ -17,14 +18,18 @@ interface DetailMangaProps {
 
 const DetailManga: FC<DetailMangaProps> = ({ data, top_manga_month, slug }) => {
   return (
-    <MainLayout>
-      <IsBrowser>
-        <div className="flex">
-          <InfoManga data={data} slug={slug} />
-          <RankMonth top_manga_month={top_manga_month} />
-        </div>
-      </IsBrowser>
-    </MainLayout>
+    <>
+      <Meta title={data.name} image={data.img} description={data.content} />
+
+      <MainLayout>
+        <IsBrowser>
+          <div className="flex flex-col lg:flex-row">
+            <InfoManga data={data} slug={slug} />
+            <RankMonth top_manga_month={top_manga_month} />
+          </div>
+        </IsBrowser>
+      </MainLayout>
+    </>
   );
 };
 

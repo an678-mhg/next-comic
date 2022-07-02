@@ -21,7 +21,7 @@ const Sidebar = () => {
   }, []);
 
   return (
-    <div className={`bg-primary-300 transition-all sidebar`}>
+    <div className={`bg-primary-300 transition-all sidebar hidden md:block`}>
       <div className="container">
         <ul className="text-text-color flex items-center w-full justify-center">
           {sidebar.map((item) => (

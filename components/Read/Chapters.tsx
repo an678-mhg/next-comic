@@ -1,15 +1,20 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import Link from "next/link";
 import { NewChapterType } from "../../models/comics";
 
 interface PropsType {
   chapters: NewChapterType[];
   slug: string;
+  showChapters: boolean;
 }
 
-const Chapters: FC<PropsType> = ({ chapters, slug }) => {
+const Chapters: FC<PropsType> = ({ chapters, slug, showChapters }) => {
   return (
-    <div className="w-[20%] h-[calc(100vh-48px)] bg-primary-100 overflow-y-scroll">
+    <div
+      className={`lg:w-[20%] max-w-full lg:h-[calc(100vh-48px)] transition-all bg-primary-100 overflow-y-scroll lg:block fixed top-[48px] bottom-0 ${
+        showChapters ? "left-0" : "left-[-100%]"
+      } right-0 lg:static`}
+    >
       <Link href="/">
         <a className="text-white p-3 text-center block fixed w-full top-0 bg-primary-200">
           {" "}
@@ -17,7 +22,7 @@ const Chapters: FC<PropsType> = ({ chapters, slug }) => {
         </a>
       </Link>
 
-      <ul className="p-5">
+      <ul className="p-4">
         {chapters.map((item) => (
           <li
             key={item.href}
