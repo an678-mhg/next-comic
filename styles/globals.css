@@ -1,14 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,300&display=swap");
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 * {
   padding: 0;
   margin: 0;
   font-family: "Montserrat", sans-serif;
 }
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 a {
   color: inherit;
@@ -48,4 +48,30 @@ img {
 
 .line-clamp-2 {
   -webkit-line-clamp: 2;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 9999;
+}
+
+.new-chapters {
+  display: none;
+  animation: TruyenTruotLen ease-in 0.4s;
+}
+
+.wrap-comic-item:hover .new-chapters {
+  display: block;
+}
+
+@keyframes TruyenTruotLen {
+  to {
+    bottom: 44px;
+  }
+  from {
+    bottom: 30px;
+  }
 }

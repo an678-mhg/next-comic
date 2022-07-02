@@ -1,5 +1,5 @@
 import type { GetServerSideProps } from "next";
-import { FC, Key } from "react";
+import { FC, HTMLProps, Key } from "react";
 import { getHomeApi } from "../api/home";
 import ComicsItem from "../components/Comics/ComicsItem";
 import Title from "../components/Title";
@@ -19,7 +19,10 @@ const Home: FC<HomeProps> = ({ data, totalPage }) => {
         <Title>Truyện mới cập nhật</Title>
       </div>
 
-      <div className="grid lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-4 mt-4">
+      {/* <GridLayout className={"mt-4" as HTMLProps<HTMLDivElement>}>
+        
+      </GridLayout> */}
+      <div className="mt-4 grid xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-4">
         {data?.map((item) => (
           <ComicsItem key={item.href as Key} item={item} />
         ))}
