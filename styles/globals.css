@@ -60,7 +60,7 @@ img {
 
 .new-chapters {
   display: none;
-  animation: TruyenTruotLen ease-in 0.4s;
+  animation: TruyenTruotLen ease-in 0.1s;
 }
 
 .wrap-comic-item:hover .new-chapters {

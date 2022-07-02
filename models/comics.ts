@@ -9,7 +9,7 @@ export interface ComicType {
   name: string;
   img: string;
   newChapter?: NewChapterType;
-  newChapters?: NewChapterType[];
+  newChapters: NewChapterType[];
 }
 
 export interface ReadChap {

@@ -1,7 +1,8 @@
-import { GetStaticProps, GetStaticPaths } from "next";
-import Link from "next/link";
+import { GetStaticProps, GetStaticPaths, GetStaticPropsContext } from "next";
 import React, { FC } from "react";
 import { getReadApi } from "../../../../api/read";
+import Chapters from "../../../../components/Read/Chapters";
+import ReadView from "../../../../components/Read/ReadView";
 import { NewChapterType, ReadChap } from "../../../../models/comics";
 
 interface ReadProps {
@@ -12,36 +13,9 @@ interface ReadProps {
 
 const Read: FC<ReadProps> = ({ results, chapters, slug }) => {
   return (
-    <div className="flex">
-      <div className="w-[30%] h-screen bg-primary-100 overflow-y-scroll">
-        <Link href="/">
-          <a className="text-white p-3 text-center block"> Về trang chủ</a>
-        </Link>
-
-        <ul className="p-5">
-          {chapters.map((item) => (
-            <li
-              key={item.href}
-              className={`w-full p-2 rounded-md ${
-                slug === item.href ? "bg-[#2374E1]" : "bg-primary-300"
-              } mb-4`}
-            >
-              <Link href={`/read${item.href}`}>
-                <a className="text-text-color flex items-center">
-                  <p className="text-sm line-clamp-1">{item.name}</p>
-                </a>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className="flex-1 h-screen overflow-y-scroll">
-        {results.map((item) => (
-          <div className="w-[50%] mx-auto max-w-full" key={item.alt}>
-            <img src={item.img} alt={item.alt} />
-          </div>
-        ))}
-      </div>
+    <div className="flex pt-[48px]">
+      <Chapters chapters={chapters} slug={slug} />
+      <ReadView results={results} />
     </div>
   );
 };
@@ -53,7 +27,7 @@ export const getStaticPaths: GetStaticPaths = () => {
   };
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
   const slug = params?.slug as string;
   const chap = params?.chap as string;
   const id = params?.id as string;
@@ -68,6 +42,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
           chapters: data.chapters,
           slug: "/" + slug + "/" + chap + "/" + id,
         },
+        revalidate: 3600,
       };
     } catch (error) {
       console.log(error);

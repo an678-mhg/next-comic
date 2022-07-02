@@ -8,7 +8,7 @@ interface PropsType {
 
 const ComicsItem: FC<PropsType> = ({ item }) => {
   return (
-    <Link href={`/manga/${item.href}`}>
+    <Link href={`/manga${item.href}`}>
       <a className="relative wrap-comic-item block">
         <div className="h-[200px]">
           <img src={item.img} alt={item.name} />
@@ -19,7 +19,7 @@ const ComicsItem: FC<PropsType> = ({ item }) => {
           </h3>
           <div className="absolute bottom-[44px] left-0 right-0 p-2 bg-primary-300 new-chapters">
             {item.newChapters?.map((p) => (
-              <Link href={`/read/${p.href}`} key={p.href as Key}>
+              <Link href={`/read${p.href}`} key={p.href as Key}>
                 <a className="flex items-center justify-between py-1">
                   <p className="text-text-color text-xs">{p.name}</p>
                   <p className="text-[10px] text-gray-500">{p.time}</p>
