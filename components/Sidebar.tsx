@@ -1,12 +1,10 @@
 import Link from "next/link";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { sidebar } from "../data/sidebar";
 
 const Sidebar = () => {
-  const ref = useRef<HTMLDivElement>();
-
   useEffect(() => {
-    const sidebar = ref.current;
+    const sidebar: HTMLDivElement | null = document.querySelector(".sidebar");
     var sticky = sidebar?.offsetTop as Number;
 
     function handleSticky() {
@@ -23,7 +21,7 @@ const Sidebar = () => {
   }, []);
 
   return (
-    <div ref={ref} className={`bg-primary-300 transition-all`}>
+    <div className={`bg-primary-300 transition-all sidebar`}>
       <div className="container">
         <ul className="text-text-color flex items-center w-full justify-center">
           {sidebar.map((item) => (
