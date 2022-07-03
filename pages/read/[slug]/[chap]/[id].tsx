@@ -1,5 +1,6 @@
 import { GetStaticPaths, GetStaticPropsContext } from "next";
-import React, { FC, useState } from "react";
+import { useRouter } from "next/router";
+import React, { FC, useEffect, useState } from "react";
 import { getReadApi } from "../../../../api/read";
 import Meta from "../../../../components/Meta";
 import Chapters from "../../../../components/Read/Chapters";
@@ -14,6 +15,11 @@ interface ReadProps {
 
 const Read: FC<ReadProps> = ({ results, chapters, slug }) => {
   const [showChapters, setShowChapters] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    setShowChapters(false);
+  }, [router.asPath]);
 
   return (
     <div className="flex pt-[48px]">
@@ -55,7 +61,7 @@ export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
           chapters: data.chapters,
           slug: "/" + slug + "/" + chap + "/" + id,
         },
-        revalidate: 3600,
+        revalidate: 60,
       };
     } catch (error) {
       console.log(error);

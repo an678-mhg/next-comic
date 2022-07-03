@@ -29,7 +29,11 @@ const ReadView: FC<PropsType> = ({
 
       {results.map((item) => (
         <div className="md:w-[50%] mx-auto w-[calc(100%-32px)]" key={item.alt}>
-          <img src={getImage(item.img)} alt={item.alt} />
+          <img
+            className="border border-black"
+            src={getImage(item.img)}
+            alt={item.alt}
+          />
         </div>
       ))}
     </div>

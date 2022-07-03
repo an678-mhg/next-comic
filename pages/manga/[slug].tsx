@@ -54,7 +54,7 @@ export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
           top_manga_month: top_manga_month.data.slice(0, 10),
           slug,
         },
-        revalidate: 3600,
+        revalidate: 60,
       };
     } catch (error) {
       return {

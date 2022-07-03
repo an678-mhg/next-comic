@@ -1,16 +1,18 @@
-import type { GetServerSideProps } from "next";
-import { FC, Key } from "react";
-import { getHomeApi } from "../api/home";
-import ComicsItem from "../components/Comics/ComicsItem";
+import type { GetStaticProps } from "next";
+import { FC } from "react";
+import getHomeApi from "../api/home";
+import SlideViews from "../components/Comics/SlideViews";
 import { IsBrowser } from "../components/IsBrowser";
 import Meta from "../components/Meta";
 import Title from "../components/Title";
 import MainLayout from "../layout/MainLayout";
 import { ComicType } from "../models/comics";
+import { ChevronRightIcon } from "@heroicons/react/solid";
 
 interface HomeProps {
-  data: ComicType[];
-  totalPage: Number;
+  data: {
+    [key: string]: ComicType[];
+  };
 }
 
 const Home: FC<HomeProps> = ({ data }) => {
@@ -24,13 +26,21 @@ const Home: FC<HomeProps> = ({ data }) => {
 
       <MainLayout>
         <IsBrowser>
-          <div className="pt-4">
-            <Title>Truyện mới cập nhật</Title>
-          </div>
-
-          <div className="mt-4 grid xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-4">
-            {data?.map((item) => (
-              <ComicsItem key={item.href as Key} item={item} />
+          <div className="mt-4 min-h-screen">
+            {Object.keys(data).map((item) => (
+              <div className="mb-4" key={item}>
+                <div className="mb-4">
+                  <Title
+                    position="end"
+                    icons={
+                      <ChevronRightIcon className="w-6 h-6 ml-1 text-blue-500" />
+                    }
+                  >
+                    {item}
+                  </Title>
+                </div>
+                <SlideViews data={data[item]} />
+              </div>
             ))}
           </div>
         </IsBrowser>
@@ -39,20 +49,18 @@ const Home: FC<HomeProps> = ({ data }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const page = query.page || 1;
-
+export const getStaticProps: GetStaticProps = async () => {
   try {
-    const data = await getHomeApi(Number(page));
-    let totalPage: Number = data.totalPage;
+    const data = await getHomeApi();
 
     return {
       props: {
-        data: data.truyen_moi_cap_nhat,
-        totalPage,
+        data,
       },
+      revalidate: 60,
     };
   } catch (error) {
+    console.log(error);
     return {
       notFound: true,
     };

@@ -59,7 +59,6 @@ img {
 }
 
 .new-chapters {
-  display: none;
   animation: TruyenTruotLen ease-in 0.1s;
 }
 
@@ -74,4 +73,19 @@ img {
   from {
     bottom: 30px;
   }
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #ccc;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #1877f2;
 }
