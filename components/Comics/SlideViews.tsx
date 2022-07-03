@@ -24,7 +24,7 @@ const SlideViews: FC<SlideViewsProps> = ({ data }) => {
         spaceBetween={20}
       >
         {data.map((item) => (
-          <SwiperSlide className="" key={item.href}>
+          <SwiperSlide key={item.href}>
             <ComicsItem item={item} />
           </SwiperSlide>
         ))}

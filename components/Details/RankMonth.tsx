@@ -8,14 +8,14 @@ interface PropsType {
 
 const RankMonth: FC<PropsType> = ({ top_manga_month }) => {
   return (
-    <div className="lg:w-[320px] w-full border-2 p-2 mt-4 lg:mt-0">
+    <div className="lg:w-[320px] w-full border-l border-r border-b border-primary-300 p-2 mt-4 lg:mt-0 text-text-color">
       <h1 className="my-4 text-center font-semibold text-xl">Top tháng</h1>
       <hr />
       <ul>
         {top_manga_month.map((item) => (
           <li
             key={item.href}
-            className="flex items-center py-2 justify-between border-t-1 border-b-2"
+            className="flex items-center py-2 justify-between border-b-primary-300"
           >
             <div className="flex items-center">
               <div className="w-[60px] h-[60px]">

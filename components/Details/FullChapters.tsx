@@ -20,12 +20,12 @@ const FullChapters: FC<FullChaptersProps> = ({ chapters }) => {
         </Title>
       </div>
 
-      <div className="border border-[#ccc] mt-4">
+      <div className="border border-primary-300 mt-4 text-text-color">
         <ul className="w-full h-[350px] overflow-y-scroll">
           {chapters.map((item) => (
             <li key={item.href}>
               <Link href={`/read${item.href}`}>
-                <a className="flex items-center justify-between border-b p-2">
+                <a className="flex items-center justify-between p-2">
                   <p className="font-semibold">{item.name}</p>
                   <p className="text-gray-500 text-sm">{item.time}</p>
                 </a>

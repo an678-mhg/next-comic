@@ -4,7 +4,7 @@ import type { NextPage } from "next";
 
 const Footer: NextPage = () => {
   return (
-    <div className="flex justify-between items-center h-12 mt-14 px-7 bg-primary-200 text-text-color">
+    <div className="flex justify-between items-center h-12 px-7 bg-primary-200 text-text-color">
       <p className="hidden md:block">Nguyen Quoc An &copy; 2022</p>
       <p className="block md:hidden">Nguyen Quoc An &copy;</p>
       <div className="flex items-center gap-3">

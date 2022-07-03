@@ -11,7 +11,7 @@ const Title: FC<TileProps> = ({ children, icons, position }) => {
   return (
     <div className="flex items-center">
       {position === "start" && icons}
-      <h1 className="text-xl font-semibold">{children}</h1>
+      <h1 className="text-xl font-semibold text-text-color">{children}</h1>
       {position === "end" && icons}
     </div>
   );

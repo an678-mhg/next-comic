@@ -1,12 +1,12 @@
 import { GetStaticPaths, GetStaticPropsContext } from "next";
 import React, { FC } from "react";
-import { getDetailsApi } from "../../api/details";
-import { getRankApi } from "../../api/rank";
+import { getDetailsApi } from "../../services/details";
+import { getRankApi } from "../../services/rank";
 import InfoManga from "../../components/Details/InfoManga";
 import RankMonth from "../../components/Details/RankMonth";
 import { IsBrowser } from "../../components/IsBrowser";
 import Meta from "../../components/Meta";
-import MainLayout from "../../layout/MainLayout";
+import MainLayout from "../../components/Layout/MainLayout";
 import { ComicType } from "../../models/comics";
 import { Details } from "../../models/details";
 

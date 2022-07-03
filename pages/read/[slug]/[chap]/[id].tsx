@@ -1,7 +1,7 @@
 import { GetStaticPaths, GetStaticPropsContext } from "next";
 import { useRouter } from "next/router";
 import React, { FC, useEffect, useState } from "react";
-import { getReadApi } from "../../../../api/read";
+import { getReadApi } from "../../../../services/read";
 import Meta from "../../../../components/Meta";
 import Chapters from "../../../../components/Read/Chapters";
 import ReadView from "../../../../components/Read/ReadView";

@@ -10,7 +10,7 @@ const ComicsItem: FC<PropsType> = ({ item }) => {
   return (
     <Link href={`/manga${item.href}`}>
       <a className="relative wrap-comic-item block rounded-sm overflow-hidden">
-        <div className="h-[200px]">
+        <div className="h-[250px]">
           <img src={item.img} alt={item.name} />
         </div>
         <div className={`p-2 bg-primary-300`}>

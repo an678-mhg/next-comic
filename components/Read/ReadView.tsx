@@ -15,7 +15,7 @@ const ReadView: FC<PropsType> = ({
   showChapters,
 }) => {
   return (
-    <div className="flex-1 h-[calc(100vh-48px)] overflow-y-scroll">
+    <div className="flex-1 h-[calc(100vh-48px)] overflow-y-scroll bg-primary-100">
       <button
         onClick={() => setShowChapters(!showChapters)}
         className="absolute top-[5px] left-[16px] lg:hidden block bg-blue-500 p-1"

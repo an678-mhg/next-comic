@@ -1,8 +1,11 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { sidebar } from "../data/sidebar";
 
 const Sidebar = () => {
+  const router = useRouter();
+
   useEffect(() => {
     const sidebar: HTMLDivElement | null = document.querySelector(".sidebar");
     var sticky = sidebar?.offsetTop as Number;
@@ -27,7 +30,9 @@ const Sidebar = () => {
           {sidebar.map((item) => (
             <li
               key={item.name}
-              className={`py-2 px-5 hover:bg-primary-100 transition-colors`}
+              className={`py-2 px-5 hover:bg-primary-100 transition-colors ${
+                router.asPath === item.link && "bg-primary-100"
+              }`}
             >
               <Link href={item.link}>
                 <a className="uppercase">{item.name}</a>
