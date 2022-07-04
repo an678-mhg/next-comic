@@ -11,7 +11,6 @@ const MainLayout: FC<MainLayoutProps> = ({ children }) => {
   return (
     <div>
       <Header />
-      <Sidebar />
 
       <div className="bg-primary-200 pb-10">
         <div className={`container min-h-screen`}>

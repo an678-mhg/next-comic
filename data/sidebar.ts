@@ -11,12 +11,4 @@ export const sidebar = [
     name: "Lịch sử",
     link: "/lich-su",
   },
-  {
-    name: "Thể loại",
-    link: "/the-loai",
-  },
-  {
-    name: "Tìm truyện",
-    link: "/tim-truyen-nang-cao",
-  },
 ];

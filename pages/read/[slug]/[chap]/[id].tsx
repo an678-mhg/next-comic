@@ -39,13 +39,6 @@ const Read: FC<ReadProps> = ({ results, chapters, slug }) => {
   );
 };
 
-export const getStaticPaths: GetStaticPaths = () => {
-  return {
-    paths: [],
-    fallback: "blocking",
-  };
-};
-
 export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
   const slug = params?.slug as string;
   const chap = params?.chap as string;
@@ -65,12 +58,15 @@ export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
       };
     } catch (error) {
       console.log(error);
-
-      return {
-        notFound: true,
-      };
     }
   }
+};
+
+export const getStaticPaths: GetStaticPaths = () => {
+  return {
+    paths: [],
+    fallback: "blocking",
+  };
 };
 
 export default Read;

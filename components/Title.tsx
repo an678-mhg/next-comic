@@ -3,11 +3,15 @@ import { ArrowNarrowRightIcon } from "@heroicons/react/solid";
 
 interface TileProps {
   children: React.ReactNode;
-  icons: React.ReactNode;
+  icons?: React.ReactNode;
   position: "start" | "end";
 }
 
-const Title: FC<TileProps> = ({ children, icons, position }) => {
+const Title: FC<TileProps> = ({
+  children,
+  icons = <ArrowNarrowRightIcon className="w-6 h-6 ml-1 text-blue-500" />,
+  position = "end",
+}) => {
   return (
     <div className="flex items-center">
       {position === "start" && icons}
