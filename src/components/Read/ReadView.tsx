@@ -7,7 +7,7 @@ import Link from "next/link";
 interface PropsType {
   results: ReadChap[];
   showChapters: boolean;
-  setShowChapters: Function;
+  setShowChapters: () => void;
   detailSlug: string;
 }
 
@@ -20,6 +20,16 @@ const ReadView: FC<PropsType> = ({
   return (
     <div className="flex-1 h-screen overflow-y-scroll bg-primary-100 pt-[44px]">
       <div className="absolute top-0 left-0 right-0 py-2 px-4 bg-primary-300 flex items-center justify-between">
+        <button
+          onClick={setShowChapters}
+          className="lg:hidden block bg-blue-500 p-1"
+        >
+          {showChapters ? (
+            <XIcon className="w-6 h-6 text-text-color" />
+          ) : (
+            <MenuAlt1Icon className="w-6 h-6 text-text-color" />
+          )}
+        </button>
         <div className="flex items-center h-full">
           <button>
             <Link href={`/manga/${detailSlug}`}>
@@ -29,16 +39,6 @@ const ReadView: FC<PropsType> = ({
             </Link>
           </button>
         </div>
-        <button
-          onClick={() => setShowChapters(!showChapters)}
-          className="lg:hidden block bg-blue-500 p-1"
-        >
-          {showChapters ? (
-            <XIcon className="w-6 h-6 text-text-color" />
-          ) : (
-            <MenuAlt1Icon className="w-6 h-6 text-text-color" />
-          )}
-        </button>
       </div>
 
       {results.map((item) => (

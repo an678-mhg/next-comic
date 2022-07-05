@@ -1,9 +1,13 @@
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../Sidebar";
-import { SearchIcon } from "@heroicons/react/solid";
+import { SearchIcon, MenuIcon } from "@heroicons/react/solid";
+import { useRouter } from "next/router";
+import Search from "./Search";
 
 const Header = () => {
+  const router = useRouter();
+
   useEffect(() => {
     const header = document.getElementById("myHeader");
     const sticky = header?.offsetTop || 0;
@@ -23,30 +27,67 @@ const Header = () => {
     };
   }, []);
 
-  return (
-    <div id="myHeader" className={`py-4 shadow-sm bg-primary-200 transition`}>
-      <div className="container flex items-center justify-between">
-        <Link href="/">
-          <a className="block">
-            <h1 className="text-2xl font-bold text-text-color">NextComics</h1>
-          </a>
-        </Link>
+  const [showMenu, setShowMenu] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
 
-        <Sidebar />
+  const handleCloseSearch = () => {
+    setShowSearch(false);
+  };
+
+  useEffect(() => {
+    setShowMenu(false);
+  }, [router.asPath]);
+
+  return (
+    <div
+      id="myHeader"
+      className={`py-2 shadow-sm bg-primary-200 transition-all`}
+    >
+      <div className="container flex items-center justify-between">
+        <div
+          className={`md:flex block md:static fixed top-0 bottom-0 z-[9999] ${
+            showMenu ? "left-0" : "left-[-100%]"
+          } w-[250px] md:w-auto max-w-full md:bg-transparent bg-primary-300 transition-all`}
+        >
+          <Link href="/">
+            <a className="flex items-center md:flex-row flex-col">
+              <h1 className="text-2xl font-bold text-text-color mb-0 md:mr-10 mr-0 w-full p-4 md:p-0">
+                NextComics
+              </h1>
+            </a>
+          </Link>
+
+          <Sidebar />
+        </div>
+
+        <div
+          onClick={() => setShowMenu(true)}
+          className="p-2 rounded-sm bg-primary-300 md:hidden block cursor-pointer"
+        >
+          <MenuIcon className="w-6 h-6 text-blue-500" />
+        </div>
+
+        <div
+          onClick={() => setShowMenu(false)}
+          className={`fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm opacity-100 z-[9998] transition-opacity md:hidden ${
+            showMenu ? "block" : "hidden"
+          }`}
+        ></div>
 
         <div className="flex items-center">
-          <button className="p-2 rounded-full bg-primary-300 mr-4">
-            <Link href="/tim-truyen-nang-cao">
-              <a>
-                <SearchIcon className="w-6 h-6 text-text-color" />
-              </a>
-            </Link>
+          <button
+            onClick={() => setShowSearch(true)}
+            className="p-2 rounded-full bg-primary-300 mr-4"
+          >
+            <SearchIcon className="w-6 h-6 text-text-color" />
           </button>
           <button className="text-text-color px-3 py-2 bg-primary-300 rounded-sm">
             Đăng nhập
           </button>
         </div>
       </div>
+
+      {showSearch && <Search handleClose={handleCloseSearch} />}
     </div>
   );
 };

@@ -5,14 +5,14 @@ export const sidebar = [
   },
   {
     name: "Theo dõi",
-    link: "/theo-doi",
+    link: "/following",
   },
   {
     name: "Lịch sử",
-    link: "/lich-su",
+    link: "/history",
   },
   {
     name: "Bộ lọc",
-    link: "/bo-loc",
+    link: "/filter",
   },
 ];

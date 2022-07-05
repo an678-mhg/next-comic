@@ -4,7 +4,7 @@ import { ArrowNarrowRightIcon } from "@heroicons/react/solid";
 interface TileProps {
   children: React.ReactNode;
   icons?: React.ReactNode;
-  position: "start" | "end";
+  position?: "start" | "end";
 }
 
 const Title: FC<TileProps> = ({

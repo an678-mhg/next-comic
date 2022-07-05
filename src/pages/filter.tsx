@@ -72,9 +72,9 @@ const Categories: FC<CategoriesProps> = ({ data, results }) => {
   }, [router.asPath]);
 
   return (
-    <MainLayout>
-      <Meta />
-      <IsBrowser>
+    <IsBrowser>
+      <MainLayout>
+        <Meta />
         <form onSubmit={handleSubmit}>
           {showFilter && (
             <div className="grid lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-4 pt-4">
@@ -132,8 +132,8 @@ const Categories: FC<CategoriesProps> = ({ data, results }) => {
         </div>
 
         <PaginationCustomer totalPage={results.totalPage} />
-      </IsBrowser>
-    </MainLayout>
+      </MainLayout>
+    </IsBrowser>
   );
 };
 

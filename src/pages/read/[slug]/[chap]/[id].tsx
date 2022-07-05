@@ -1,6 +1,6 @@
 import { GetServerSidePropsContext } from "next";
 import { useRouter } from "next/router";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useCallback, useEffect, useState } from "react";
 import { getReadApi } from "../../../../services/read";
 import Meta from "../../../../components/Meta";
 import Chapters from "../../../../components/Read/Chapters";
@@ -23,6 +23,10 @@ const Read: FC<ReadProps> = ({ results, chapters, slug, detailSlug }) => {
     setShowChapters(false);
   }, [router.asPath]);
 
+  const handleShowChapters = useCallback(() => {
+    setShowChapters((prev) => !prev);
+  }, []);
+
   return (
     <IsBrowser>
       <div className="flex">
@@ -37,7 +41,7 @@ const Read: FC<ReadProps> = ({ results, chapters, slug, detailSlug }) => {
           detailSlug={detailSlug}
           showChapters={showChapters}
           results={results}
-          setShowChapters={setShowChapters}
+          setShowChapters={handleShowChapters}
         />
       </div>
     </IsBrowser>

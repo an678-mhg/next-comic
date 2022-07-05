@@ -1,4 +1,4 @@
-import React, { FC, startTransition, useEffect, useState } from "react";
+import React, { FC, memo, useEffect, useState } from "react";
 import Link from "next/link";
 import { NewChapterType } from "../../models/comics";
 import { ChevronDoubleLeftIcon } from "@heroicons/react/solid";
@@ -15,11 +15,9 @@ const Chapters: FC<PropsType> = ({ chapters, slug, showChapters }) => {
   const router = useRouter();
 
   const [searchChap, setSearchChap] = useState("");
-  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     setSearchChap("");
-    setSearchQuery("");
   }, [router.asPath]);
 
   const handleNextChap = () => {
@@ -60,17 +58,30 @@ const Chapters: FC<PropsType> = ({ chapters, slug, showChapters }) => {
         <div className="flex items-center px-4 pt-4 justify-between gap-4">
           <button
             onClick={handlePrevChap}
-            className="py-1 px-2 w-full rounded-md bg-primary-300"
+            className={`py-1 px-2 w-full rounded-md  ${
+              chapters.findIndex(
+                (item) => item.href === router.asPath.split("/read")[1]
+              ) >=
+              chapters.length - 1
+                ? "bg-gray-500 text-gray-600 opacity-30 cursor-not-allowed"
+                : "bg-primary-300 text-blue-500"
+            }`}
             title="Chap trước"
           >
-            <ChevronDoubleLeftIcon className="w-6 h-6 text-blue-500 mx-auto" />
+            <ChevronDoubleLeftIcon className="w-6 h-6 mx-auto" />
           </button>
           <button
             onClick={handleNextChap}
-            className="py-1 px-2 w-full rounded-md bg-primary-300"
+            className={`py-1 px-2 w-full rounded-md ${
+              chapters.findIndex(
+                (item) => item.href === router.asPath.split("/read")[1]
+              ) <= 0
+                ? "bg-gray-500 text-gray-600 opacity-30 cursor-not-allowed"
+                : "bg-primary-300 text-blue-500"
+            }`}
             title="Chap tiếp theo"
           >
-            <ChevronDoubleRightIcon className="w-6 h-6 text-blue-500 mx-auto" />
+            <ChevronDoubleRightIcon className="w-6 h-6 mx-auto" />
           </button>
         </div>
         <div className="px-4 pt-4">
@@ -79,10 +90,6 @@ const Chapters: FC<PropsType> = ({ chapters, slug, showChapters }) => {
             placeholder="Tìm kiếm chap..."
             onChange={(e) => {
               setSearchChap(e.target.value);
-
-              startTransition(() => {
-                setSearchQuery(e.target.value);
-              });
             }}
             value={searchChap}
           />
@@ -90,7 +97,7 @@ const Chapters: FC<PropsType> = ({ chapters, slug, showChapters }) => {
       </div>
       <ul className="px-4 mt-4 h-[calc(100vh-180px)] overflow-y-auto scroll-none">
         {chapters
-          .filter((item) => item.name.includes(searchQuery))
+          .filter((item) => item.name.includes(searchChap))
           .map((item) => (
             <li
               key={item.href}
@@ -110,4 +117,4 @@ const Chapters: FC<PropsType> = ({ chapters, slug, showChapters }) => {
   );
 };
 
-export default Chapters;
+export default memo(Chapters);

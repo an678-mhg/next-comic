@@ -18,6 +18,10 @@ const searchApi = {
     );
     return res.data;
   },
+  getSearchKeyWord: async (keyword: string, page: number) => {
+    const res = await client.get(`/search?keyword=${keyword}&page=${page}`);
+    return res.data;
+  },
 };
 
 export default searchApi;

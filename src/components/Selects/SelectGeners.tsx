@@ -1,6 +1,7 @@
 import { Select } from "antd";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { FilterItem } from "../../models/search";
+// import "antd/dist/antd.css";
 
 const { Option } = Select;
 

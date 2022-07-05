@@ -18,18 +18,16 @@ interface DetailMangaProps {
 
 const DetailManga: FC<DetailMangaProps> = ({ data, top_manga_month, slug }) => {
   return (
-    <>
+    <IsBrowser>
       <Meta title={data.name} image={data.img} description={data.content} />
 
       <MainLayout>
-        <IsBrowser>
-          <div className="flex flex-col lg:flex-row">
-            <InfoManga data={data} slug={slug} />
-            <RankMonth top_manga_month={top_manga_month} />
-          </div>
-        </IsBrowser>
+        <div className="flex flex-col lg:flex-row">
+          <InfoManga data={data} slug={slug} />
+          <RankMonth top_manga_month={top_manga_month} />
+        </div>
       </MainLayout>
-    </>
+    </IsBrowser>
   );
 };
 

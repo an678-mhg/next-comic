@@ -18,10 +18,9 @@ interface HomeProps {
 const Home: FC<HomeProps> = ({ data }) => {
   return (
     <>
-      <Meta />
-
-      <MainLayout>
-        <IsBrowser>
+      <IsBrowser>
+        <MainLayout>
+          <Meta />
           <div>
             {Object.keys(data).map((item) => (
               <div key={item}>
@@ -39,8 +38,8 @@ const Home: FC<HomeProps> = ({ data }) => {
               </div>
             ))}
           </div>
-        </IsBrowser>
-      </MainLayout>
+        </MainLayout>
+      </IsBrowser>
     </>
   );
 };
