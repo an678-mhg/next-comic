@@ -16,7 +16,9 @@ const InfoManga: FC<PropsType> = ({ data, slug }) => {
     <div className="pt-4 flex-1 lg:mr-10 mr-0 text-text-color">
       <div>
         <div className="mb-5 text-center">
-          <h1 className="uppercase font-bold text-xl">{data.name}</h1>
+          <h1 className="uppercase font-bold text-xl text-text-color">
+            {data.name}
+          </h1>
           <p className="font-semibold text-gray-500">{data.updatedAt}</p>
         </div>
         <div className="flex flex-col lg:flex-row">

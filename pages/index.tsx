@@ -18,11 +18,7 @@ interface HomeProps {
 const Home: FC<HomeProps> = ({ data }) => {
   return (
     <>
-      <Meta
-        title="NextComics | Website đọc truyện tranh"
-        image="https://scontent.fvca1-1.fna.fbcdn.net/v/t1.15752-9/285483973_516979343537680_6946433712113895448_n.png?_nc_cat=105&ccb=1-7&_nc_sid=ae9488&_nc_ohc=lWfyjqf8fTMAX_JpV1b&_nc_ht=scontent.fvca1-1.fna&oh=03_AVICHdZxE1ElTuWM2wUgPEMyrGuAfdAoW6AzqaL7NJvhVw&oe=62E678E8"
-        description="Website được tạo bởi Nextjs và Reactjs"
-      />
+      <Meta />
 
       <MainLayout>
         <IsBrowser>

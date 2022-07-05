@@ -8,6 +8,7 @@ export interface ComicType {
   href: string;
   name: string;
   img: string;
+  description?: string;
   newChapter?: NewChapterType;
   newChapters: NewChapterType[];
 }

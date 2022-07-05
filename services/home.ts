@@ -6,11 +6,11 @@ interface HomeApi {
 
 const getHomeApi = async () => {
   const data: HomeApi = {
+    "Truyện mới cập nhật": "/home",
     "Truyện nổi bật": "/rank/the-loai/all?status=-1&sort=10",
     "Truyện nổi bật ngày": "/rank/the-loai/all?status=-1&sort=13",
     "Truyện nổi bật tuần": "/rank/the-loai/all?status=-1&sort=12",
     "Truyện nổi bật tháng": "/rank/the-loai/all?status=-1&sort=11",
-    "Truyện mới cập nhật": "/home",
   };
 
   const res = await Promise.all(

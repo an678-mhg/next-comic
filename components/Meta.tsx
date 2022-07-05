@@ -4,12 +4,16 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 
 interface MetaProps {
-  title: string;
-  description: string;
-  image: string;
+  title?: string;
+  description?: string;
+  image?: string;
 }
 
-const Meta: FC<MetaProps> = ({ title, description, image }) => {
+const Meta: FC<MetaProps> = ({
+  title = "NextComics | Website đọc truyện tranh",
+  description = "Website được tạo bởi Nextjs và Reactjs",
+  image = "https://scontent.fvca1-1.fna.fbcdn.net/v/t1.15752-9/285483973_516979343537680_6946433712113895448_n.png?_nc_cat=105&ccb=1-7&_nc_sid=ae9488&_nc_ohc=lWfyjqf8fTMAX_JpV1b&_nc_ht=scontent.fvca1-1.fna&oh=03_AVICHdZxE1ElTuWM2wUgPEMyrGuAfdAoW6AzqaL7NJvhVw&oe=62E678E8",
+}) => {
   const router = useRouter();
 
   return (

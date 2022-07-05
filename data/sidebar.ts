@@ -11,4 +11,8 @@ export const sidebar = [
     name: "Lịch sử",
     link: "/lich-su",
   },
+  {
+    name: "Bộ lọc",
+    link: "/bo-loc",
+  },
 ];
