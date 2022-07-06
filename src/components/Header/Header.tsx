@@ -4,9 +4,15 @@ import Sidebar from "../Sidebar";
 import { SearchIcon, MenuIcon } from "@heroicons/react/solid";
 import { useRouter } from "next/router";
 import Search from "./Search";
+import useStore from "../../zustand";
+import Tippy from "@tippyjs/react/headless";
+import { signOut } from "firebase/auth";
+import { auth } from "../../config/firebase";
 
 const Header = () => {
   const router = useRouter();
+
+  const { currentUser } = useStore();
 
   useEffect(() => {
     const header = document.getElementById("myHeader");
@@ -81,9 +87,45 @@ const Header = () => {
           >
             <SearchIcon className="w-6 h-6 text-text-color" />
           </button>
-          <button className="text-text-color px-3 py-2 bg-primary-300 rounded-sm">
-            Đăng nhập
-          </button>
+          {!currentUser ? (
+            <button className="text-text-color px-3 py-2 bg-primary-300 rounded-sm">
+              <Link href="/sign-in">
+                <a>Đăng nhập</a>
+              </Link>
+            </button>
+          ) : (
+            <div>
+              <Tippy
+                interactive
+                placement="bottom-start"
+                render={(attr) => (
+                  <ul className="bg-[#333] rounded-md p-4" {...attr}>
+                    <li className="text-text-color font-semibold py-1 px-2 mb-4">
+                      {currentUser.displayName}
+                    </li>
+                    <li className="text-text-color font-semibold py-1 px-2 mb-4">
+                      {currentUser.email}
+                    </li>
+                    <li className="text-text-color font-semibold py-1 px-2">
+                      <button
+                        onClick={() => signOut(auth)}
+                        className="bg-blue-500 px-2 py-1 w-full rounded-md"
+                      >
+                        Đăng xuất
+                      </button>
+                    </li>
+                  </ul>
+                )}
+              >
+                <div className="w-10 h-10 rounded-full overflow-hidden">
+                  <img
+                    src={currentUser.photoURL}
+                    alt={currentUser.displayName}
+                  />
+                </div>
+              </Tippy>
+            </div>
+          )}
         </div>
       </div>
 

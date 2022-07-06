@@ -1,14 +1,17 @@
 import type { AppProps } from "next/app";
 import NextNProgress from "nextjs-progressbar";
-import "antd/dist/antd.css";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import AuthLayout from "../components/Layout/AuthLayout";
 import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <>
+    <AuthLayout>
       <NextNProgress showOnShallow={true} />
       <Component {...pageProps} />
-    </>
+      <ToastContainer theme="dark" />
+    </AuthLayout>
   );
 }
 

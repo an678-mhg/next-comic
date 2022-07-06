@@ -10,14 +10,19 @@
   },
   "dependencies": {
     "@heroicons/react": "^1.0.6",
+    "@tippyjs/react": "^4.2.6",
     "antd": "^4.21.5",
     "axios": "^0.27.2",
+    "firebase": "^9.8.4",
     "next": "12.2.0",
     "nextjs-progressbar": "^0.0.14",
     "react": "18.2.0",
+    "react-cssfx-loading": "^2.0.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.4.0",
-    "swiper": "^8.2.6"
+    "react-toastify": "^9.0.5",
+    "swiper": "^8.2.6",
+    "zustand": "^4.0.0-rc.1"
   },
   "devDependencies": {
     "@types/node": "18.0.0",

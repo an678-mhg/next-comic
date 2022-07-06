@@ -1,4 +1,11 @@
-import React, { FC, memo, useEffect, useState } from "react";
+import React, {
+  FC,
+  memo,
+  useEffect,
+  useMemo,
+  useState,
+  useTransition,
+} from "react";
 import Link from "next/link";
 import { NewChapterType } from "../../models/comics";
 import { ChevronDoubleLeftIcon } from "@heroicons/react/solid";
@@ -15,9 +22,16 @@ const Chapters: FC<PropsType> = ({ chapters, slug, showChapters }) => {
   const router = useRouter();
 
   const [searchChap, setSearchChap] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isPending, startTransition] = useTransition();
+
+  const chaptersMemo = useMemo(() => {
+    return chapters.filter((item) => item.name.includes(searchQuery));
+  }, [searchQuery]);
 
   useEffect(() => {
     setSearchChap("");
+    setSearchQuery("");
   }, [router.asPath]);
 
   const handleNextChap = () => {
@@ -90,15 +104,22 @@ const Chapters: FC<PropsType> = ({ chapters, slug, showChapters }) => {
             placeholder="Tìm kiếm chap..."
             onChange={(e) => {
               setSearchChap(e.target.value);
+
+              startTransition(() => {
+                setSearchQuery(e.target.value);
+              });
             }}
             value={searchChap}
           />
         </div>
       </div>
       <ul className="px-4 mt-4 h-[calc(100vh-180px)] overflow-y-auto scroll-none">
-        {chapters
-          .filter((item) => item.name.includes(searchChap))
-          .map((item) => (
+        {isPending ? (
+          <div className="p-2 bg-primary-300 rounded-md text-text-color">
+            Đang tìm.....
+          </div>
+        ) : (
+          chaptersMemo.map((item) => (
             <li
               key={item.href}
               className={`w-full p-2 rounded-md ${
@@ -111,7 +132,8 @@ const Chapters: FC<PropsType> = ({ chapters, slug, showChapters }) => {
                 </a>
               </Link>
             </li>
-          ))}
+          ))
+        )}
       </ul>
     </div>
   );

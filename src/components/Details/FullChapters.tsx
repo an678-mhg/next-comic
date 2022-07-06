@@ -20,7 +20,7 @@ const FullChapters: FC<FullChaptersProps> = ({ chapters }) => {
         </Title>
       </div>
 
-      <div className="border border-primary-300 mt-4 text-text-color">
+      <div className="border border-primary-300 mt-4 text-text-color rounded-md">
         <ul className="w-full h-[350px] overflow-y-scroll">
           {chapters.map((item) => (
             <li key={item.href}>
