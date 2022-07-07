@@ -35,6 +35,16 @@ const CommentList = () => {
     );
   }
 
+  if (document?.length === 0) {
+    return (
+      <div className="mt-4 bg-primary-300 px-3 py-2 rounded-md flex items-center justify-center">
+        <h1 className="font-semibold text-text-color">
+          Không có nhận xét nào gần đây!
+        </h1>
+      </div>
+    );
+  }
+
   return (
     <div className="mt-4">
       {document?.map((item: Comments) => (

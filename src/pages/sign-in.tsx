@@ -49,7 +49,7 @@ const SignIn = () => {
           <div>
             <button
               onClick={() => handleLogin(googleProvider)}
-              className="flex items-center text-black bg-white p-2 rounded-md w-full"
+              className="flex items-center text-black bg-white p-2 rounded-md w-full mb-4"
             >
               <FcGoogle className="w-6 h-6 mr-5" /> Đăng nhập với Google
             </button>

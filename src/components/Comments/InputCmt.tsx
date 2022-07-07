@@ -39,6 +39,10 @@ const InputCmt = () => {
 
     if (!currentUser) return;
 
+    if (!text.trim()) {
+      return;
+    }
+
     let url = null;
 
     if (file) {

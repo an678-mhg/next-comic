@@ -14,7 +14,7 @@ const NoUser = () => {
         />
       </div>
       <div className="flex-1 ml-3 bg-primary-300 py-1 px-4 w-full rounded-full">
-        <h1>
+        <h1 className="text-text-color">
           Bạn cần{" "}
           <Link href={`/sign-in?redirect=${encodeURIComponent(router.asPath)}`}>
             <a className="text-blue-500 hover:underline">đăng nhập</a>
