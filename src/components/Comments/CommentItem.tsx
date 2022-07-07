@@ -1,6 +1,6 @@
 import React, { FC, useState } from "react";
 import { Comments } from "../../models/comment";
-import { calculateCreatedTime } from "../../shared/constant";
+// import { calculateCreatedTime } from "../../shared/constant";
 import useStore from "../../zustand";
 import LightBox from "../LightBox";
 
@@ -46,9 +46,9 @@ const CommentItem: FC<CommentItemProps> = ({ item }) => {
                 </button>
               </>
             )}
-            <p className="mr-3 text-text-color mt-1 text-xs">
+            {/* <p className="mr-3 text-text-color mt-1 text-xs">
               {calculateCreatedTime(Number(item.createdAt))}
-            </p>
+            </p> */}
           </div>
         </div>
       </div>
