@@ -27,9 +27,6 @@ const RankMonth: FC<PropsType> = ({ top_manga_month }) => {
             <Link href={`/manga${item.href}`}>
               <a className="flex-1 ml-3">
                 <p className="text-sm font-semibold">{item.name}</p>
-                <p className="text-sm font-semibold">
-                  {item.newChapters[0] && item.newChapters[0].name}
-                </p>
               </a>
             </Link>
           </li>

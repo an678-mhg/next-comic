@@ -10,6 +10,7 @@ import MainLayout from "../../components/Layout/MainLayout";
 import { ComicType } from "../../models/comics";
 import { Details } from "../../models/details";
 import { addComicToLocal } from "../../shared/saveHistory";
+import Comments from "../../components/Details/Comments";
 
 interface DetailMangaProps {
   data: Details;
@@ -36,6 +37,7 @@ const DetailManga: FC<DetailMangaProps> = ({ data, top_manga_month, slug }) => {
           <InfoManga data={data} slug={slug} />
           <RankMonth top_manga_month={top_manga_month} />
         </div>
+        <Comments />
       </MainLayout>
     </IsBrowser>
   );

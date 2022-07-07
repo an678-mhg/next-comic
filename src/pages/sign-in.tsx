@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
-import { BsArrowLeft } from "react-icons/bs"; //BsGithub
+import { BsArrowLeft, BsGithub } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
-// import { FaFacebookF } from "react-icons/fa";
 import Link from "next/link";
 import Meta from "../components/Meta";
-import { auth, googleProvider } from "../config/firebase";
+import { auth, googleProvider, githubProvider } from "../config/firebase";
 import { signInWithPopup } from "firebase/auth";
 import { toast } from "react-toastify";
 import useStore from "../zustand";
@@ -47,14 +46,6 @@ const SignIn = () => {
         </div>
 
         <div>
-          {/* <div>
-            <button
-              onClick={() => handleLogin(facebookProvider)}
-              className="flex items-center text-text-color p-2 rounded-md bg-[#2D88FF] w-full mb-4"
-            >
-              <FaFacebookF className="w-6 h-6 mr-5" /> Đăng nhập với Facebook
-            </button>
-          </div> */}
           <div>
             <button
               onClick={() => handleLogin(googleProvider)}
@@ -63,14 +54,14 @@ const SignIn = () => {
               <FcGoogle className="w-6 h-6 mr-5" /> Đăng nhập với Google
             </button>
           </div>
-          {/* <div>
+          <div>
             <button
               onClick={() => handleLogin(githubProvider)}
               className="flex items-center text-text-color p-2 rounded-md bg-primary-100 w-full"
             >
               <BsGithub className="w-6 h-6 mr-5" /> Đăng nhập với Github
             </button>
-          </div> */}
+          </div>
         </div>
       </div>
     </div>

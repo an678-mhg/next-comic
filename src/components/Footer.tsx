@@ -1,4 +1,5 @@
 import { FaDiscord, FaFacebook, FaGithub } from "react-icons/fa";
+import { AiFillYoutube } from "react-icons/ai";
 
 import type { NextPage } from "next";
 
@@ -28,9 +29,9 @@ const Footer: NextPage = () => {
           className="hover:text-[#5a65ea] transition duration-300"
           target="_blank"
           rel="noopener noreferrer"
-          href="#"
+          href="https://www.youtube.com/channel/UCJeY2ZgtRzY3NSiLZYu9ddg"
         >
-          <FaDiscord size={25} />
+          <AiFillYoutube size={25} />
         </a>
       </div>
     </div>

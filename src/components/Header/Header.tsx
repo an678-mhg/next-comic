@@ -6,8 +6,7 @@ import { useRouter } from "next/router";
 import Search from "./Search";
 import useStore from "../../zustand";
 import Tippy from "@tippyjs/react/headless";
-import { signOut } from "firebase/auth";
-import { auth } from "../../config/firebase";
+import NavUser from "./NavUser";
 
 const Header = () => {
   const router = useRouter();
@@ -99,28 +98,7 @@ const Header = () => {
                 interactive
                 placement="bottom-start"
                 render={(attr) => (
-                  <ul className="bg-[#333] rounded-md p-4" {...attr}>
-                    <li className="text-text-color font-semibold py-1 px-2 mb-2 flex items-center">
-                      <div className="w-10 h-10 rounded-full overflow-hidden">
-                        <img
-                          src={currentUser.photoURL}
-                          alt={currentUser.displayName}
-                        />
-                      </div>
-                      <div className="ml-3">
-                        <p className="font-normal">{currentUser.displayName}</p>
-                        <p className="text-sm text-gray-500">User</p>
-                      </div>
-                    </li>
-                    <li className="text-text-color font-semibold py-1 px-2">
-                      <button
-                        onClick={() => signOut(auth)}
-                        className="bg-blue-500 px-2 py-1 w-full rounded-md"
-                      >
-                        Đăng xuất
-                      </button>
-                    </li>
-                  </ul>
+                  <NavUser currentUser={currentUser} {...attr} />
                 )}
               >
                 <div className="w-10 h-10 rounded-full overflow-hidden">
