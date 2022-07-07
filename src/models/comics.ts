@@ -8,9 +8,10 @@ export interface ComicType {
   href: string;
   name: string;
   img: string;
+  uid?: string;
   description?: string;
   newChapter?: NewChapterType;
-  newChapters: NewChapterType[];
+  newChapters?: NewChapterType[];
 }
 
 export interface ReadChap {

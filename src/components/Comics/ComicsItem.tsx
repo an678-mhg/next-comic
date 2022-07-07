@@ -17,16 +17,6 @@ const ComicsItem: FC<PropsType> = ({ item }) => {
           <h3 className="text-text-color font-semibold text-sm mb-2 line-clamp-1">
             {item.name}
           </h3>
-          <div className="bg-primary-300">
-            {item.newChapters?.map((p) => (
-              <Link href={`/read${p.href}`} key={p.href as Key}>
-                <a className="flex items-center justify-between py-1">
-                  <p className="text-text-color text-xs">{p.name}</p>
-                  <p className="text-[10px] text-gray-500">{p.time}</p>
-                </a>
-              </Link>
-            ))}
-          </div>
         </div>
       </a>
     </Link>

@@ -1,16 +1,10 @@
 import React, { useEffect } from "react";
-import { BsGithub, BsArrowLeft } from "react-icons/bs";
+import { BsArrowLeft } from "react-icons/bs"; //BsGithub
 import { FcGoogle } from "react-icons/fc";
-import { FaFacebookF } from "react-icons/fa";
+// import { FaFacebookF } from "react-icons/fa";
 import Link from "next/link";
 import Meta from "../components/Meta";
-import {
-  auth,
-  googleProvider,
-  githubProvider,
-  facebookProvider,
-  db,
-} from "../config/firebase";
+import { auth, googleProvider } from "../config/firebase";
 import { signInWithPopup } from "firebase/auth";
 import { toast } from "react-toastify";
 import useStore from "../zustand";
@@ -53,30 +47,30 @@ const SignIn = () => {
         </div>
 
         <div>
-          <div>
+          {/* <div>
             <button
               onClick={() => handleLogin(facebookProvider)}
               className="flex items-center text-text-color p-2 rounded-md bg-[#2D88FF] w-full mb-4"
             >
               <FaFacebookF className="w-6 h-6 mr-5" /> Đăng nhập với Facebook
             </button>
-          </div>
+          </div> */}
           <div>
             <button
               onClick={() => handleLogin(googleProvider)}
-              className="flex items-center text-black bg-white p-2 rounded-md w-full mb-4"
+              className="flex items-center text-black bg-white p-2 rounded-md w-full"
             >
               <FcGoogle className="w-6 h-6 mr-5" /> Đăng nhập với Google
             </button>
           </div>
-          <div>
+          {/* <div>
             <button
               onClick={() => handleLogin(githubProvider)}
               className="flex items-center text-text-color p-2 rounded-md bg-primary-100 w-full"
             >
               <BsGithub className="w-6 h-6 mr-5" /> Đăng nhập với Github
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

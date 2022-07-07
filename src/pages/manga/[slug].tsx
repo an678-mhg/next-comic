@@ -1,5 +1,5 @@
 import { GetStaticPaths, GetStaticPropsContext } from "next";
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import { getDetailsApi } from "../../services/details";
 import { getRankApi } from "../../services/rank";
 import InfoManga from "../../components/Details/InfoManga";
@@ -9,6 +9,7 @@ import Meta from "../../components/Meta";
 import MainLayout from "../../components/Layout/MainLayout";
 import { ComicType } from "../../models/comics";
 import { Details } from "../../models/details";
+import { addComicToLocal } from "../../shared/saveHistory";
 
 interface DetailMangaProps {
   data: Details;
@@ -17,6 +18,15 @@ interface DetailMangaProps {
 }
 
 const DetailManga: FC<DetailMangaProps> = ({ data, top_manga_month, slug }) => {
+  useEffect(() => {
+    const comic: ComicType = {
+      name: data.name,
+      href: `/${slug}`,
+      img: data.img,
+    };
+    addComicToLocal(comic);
+  }, [slug]);
+
   return (
     <IsBrowser>
       <Meta title={data.name} image={data.img} description={data.content} />

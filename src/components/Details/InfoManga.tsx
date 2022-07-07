@@ -1,10 +1,16 @@
 import Link from "next/link";
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { Details } from "../../models/details";
 import SocialShare from "../SocialShare";
 import Title from "../Title";
 import FullChapters from "./FullChapters";
 import { DocumentTextIcon } from "@heroicons/react/outline";
+import FollowingStore from "../../zustand/following";
+import { addDoc, collection } from "firebase/firestore";
+import useStore from "../../zustand";
+import { useRouter } from "next/router";
+import { db } from "../../config/firebase";
+import { toast } from "react-toastify";
 
 interface PropsType {
   data: Details;
@@ -12,6 +18,36 @@ interface PropsType {
 }
 
 const InfoManga: FC<PropsType> = ({ data, slug }) => {
+  const { currentUser } = useStore();
+  const { following, loading, addFollow } = FollowingStore();
+  const [follow, setFollow] = useState(false);
+
+  const router = useRouter();
+
+  const handleFollowComic = (comic: any) => {
+    if (!currentUser)
+      return router.push(
+        `/sign-in?redirect=${encodeURIComponent(router.asPath)}`
+      );
+
+    if (following.some((item) => item.href === `/${slug}`)) {
+      return toast.warn("Bạn đã theo dõi truyện này trước đó rồi!");
+    }
+
+    const newFollowing = {
+      uid: currentUser.uid,
+      ...comic,
+    };
+
+    addDoc(collection(db, "following"), newFollowing);
+
+    addFollow(newFollowing);
+  };
+
+  useEffect(() => {
+    setFollow(following.some((item) => item.href === `/${slug}`));
+  }, [following, slug]);
+
   return (
     <div className="pt-4 flex-1 lg:mr-10 mr-0 text-text-color">
       <div>
@@ -30,8 +66,20 @@ const InfoManga: FC<PropsType> = ({ data, slug }) => {
           <div className="flex-1 lg:ml-10 ml-0">
             <div className="flex items-center justify-between">
               <SocialShare title={slug} />
-              <button className="bg-blue-500 px-3 py-1 text-sm text-text-color rounded-md font-semibold">
-                Theo dõi
+              <button
+                disabled={loading}
+                onClick={() =>
+                  handleFollowComic({
+                    href: `/${slug}`,
+                    name: data.name,
+                    img: data.img,
+                  })
+                }
+                className={`${
+                  follow ? "bg-yellow-500" : "bg-blue-500"
+                } px-3 py-1 text-sm text-text-color rounded-md font-semibold`}
+              >
+                {follow ? `Đã theo dõi ` : "Theo dõi"}
               </button>
             </div>
             <ul>
