@@ -16,7 +16,6 @@ interface HomeProps {
 }
 
 const Home: FC<HomeProps> = ({ data }) => {
-  console.log(process.env.NEXT_PUBLIC_UPLOAD_KEY);
   return (
     <>
       <IsBrowser>
