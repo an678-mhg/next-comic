@@ -41,12 +41,12 @@ const ShowReaction: FC<ShowReactionProps> = ({ reactions }) => {
     <div className="absolute bottom-[-5px] right-0 bg-primary-300 rounded-full py-1 px-2 flex items-center">
       {filter.map((item) => (
         <div key={item} className="text-text-color flex items-center">
-          <div className="w-4 h-4 mx-1">
+          <div className="w-4 h-4 mr-1">
             <img src={renderEmoji(item)} alt={item} />
           </div>
-          <span className="ml-1 text-sm">{reactions.length}</span>
         </div>
       ))}
+      <span className="text-sm text-text-color">{reactions.length}</span>
     </div>
   );
 };

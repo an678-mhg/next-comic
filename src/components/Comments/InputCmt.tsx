@@ -8,6 +8,7 @@ import { uploadImg } from "../../shared/upload";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import { Comments } from "../../models/comment";
+import { toast } from "react-toastify";
 
 interface InputCmtProps {
   comment?: Comments;
@@ -35,7 +36,18 @@ const InputCmt: FC<InputCmtProps> = ({ comment, handleClose }) => {
 
   const handleOnChangeFile = (e: any) => {
     const file = e.target.files[0];
+    const type = ["image/png", "image/jpeg", "image/gif"];
+
     if (!file) return;
+
+    if (!type.includes(file.type)) {
+      return toast.error("Chỉ chấp nhận file hình ảnh!");
+    }
+
+    if (file.size / 1000000 > 10) {
+      return toast.error("File của bạn không được vượt quá 10mb!");
+    }
+
     file.preview = URL.createObjectURL(file);
     setFile(file);
   };
@@ -78,10 +90,6 @@ const InputCmt: FC<InputCmtProps> = ({ comment, handleClose }) => {
       handleClose();
     }
   };
-
-  useEffect(() => {
-    console.log(comment);
-  }, []);
 
   return (
     <form onSubmit={handlePostComment} className="mt-4">
