@@ -42,6 +42,7 @@ const Read: FC<ReadProps> = ({ results, chapters, slug, detailSlug }) => {
           showChapters={showChapters}
           results={results}
           setShowChapters={handleShowChapters}
+          chapters={chapters}
         />
       </div>
     </IsBrowser>

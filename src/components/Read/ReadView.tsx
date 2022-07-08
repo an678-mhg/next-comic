@@ -1,14 +1,16 @@
 import React, { FC } from "react";
-import { ReadChap } from "../../models/comics";
+import { NewChapterType, ReadChap } from "../../models/comics";
 import { getImage } from "../../shared/constant";
 import { MenuAlt1Icon, XIcon, ArrowLeftIcon } from "@heroicons/react/solid";
 import Link from "next/link";
+import ButtonChapter from "./ButtonChapter";
 
 interface PropsType {
   results: ReadChap[];
   showChapters: boolean;
   setShowChapters: () => void;
   detailSlug: string;
+  chapters: NewChapterType[];
 }
 
 const ReadView: FC<PropsType> = ({
@@ -16,6 +18,7 @@ const ReadView: FC<PropsType> = ({
   setShowChapters,
   showChapters,
   detailSlug,
+  chapters,
 }) => {
   return (
     <div className="flex-1 h-screen overflow-y-scroll bg-primary-100 pt-[44px]">
@@ -30,6 +33,7 @@ const ReadView: FC<PropsType> = ({
             <MenuAlt1Icon className="w-6 h-6 text-text-color" />
           )}
         </button>
+        <ButtonChapter chapters={chapters} />
         <div className="flex items-center h-full">
           <button>
             <Link href={`/manga/${detailSlug}`}>

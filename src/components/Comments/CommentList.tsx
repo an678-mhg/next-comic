@@ -47,9 +47,11 @@ const CommentList = () => {
 
   return (
     <div className="mt-4">
-      {document?.map((item: Comments) => (
-        <CommentItem key={item.id} item={item} />
-      ))}
+      {document
+        ?.filter((item) => item.responseTo === null)
+        ?.map((item: Comments) => (
+          <CommentItem comments={document} key={item.id} item={item} />
+        ))}
     </div>
   );
 };

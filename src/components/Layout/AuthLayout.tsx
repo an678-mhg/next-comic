@@ -33,6 +33,7 @@ const AuthLayout: FC<AuthLayoutProps> = ({ children }) => {
       }
 
       setCurrentUser(null);
+      setFollow([]);
     });
 
     return () => unsub();

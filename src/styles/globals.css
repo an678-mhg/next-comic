@@ -4322,3 +4322,12 @@ textarea.ant-pagination-options-quick-jumper input {
     transform: rotate(360deg);
   }
 }
+
+.emoji {
+  transition: all 0.1s ease-in;
+}
+
+.emoji:hover {
+  transform: scale(1.3);
+  cursor: pointer;
+}

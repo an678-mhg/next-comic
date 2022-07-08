@@ -13,7 +13,7 @@ const MainLayout: FC<MainLayoutProps> = ({ children }) => {
       <Header />
 
       <div className="bg-primary-200 pb-10">
-        <div className={`container min-h-screen`}>
+        <div className={`container min-h-screen mt-[-1px]`}>
           <div>{children}</div>
         </div>
       </div>

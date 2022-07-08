@@ -87,11 +87,11 @@ const Header = () => {
             <SearchIcon className="w-6 h-6 text-text-color" />
           </button>
           {!currentUser ? (
-            <button className="text-text-color px-3 py-2 bg-primary-300 rounded-sm">
-              <Link href="/sign-in">
-                <a>Đăng nhập</a>
-              </Link>
-            </button>
+            <Link href="/sign-in">
+              <a className="block w-full h-full text-text-color px-3 py-2 bg-primary-300 rounded-sm">
+                Đăng nhập
+              </a>
+            </Link>
           ) : (
             <div>
               <Tippy

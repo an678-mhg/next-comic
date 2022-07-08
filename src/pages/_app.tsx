@@ -8,7 +8,12 @@ import "../styles/globals.css";
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <AuthLayout>
-      <NextNProgress showOnShallow={true} />
+      <NextNProgress
+        showOnShallow={true}
+        options={{
+          showSpinner: false,
+        }}
+      />
       <Component {...pageProps} />
       <ToastContainer theme="dark" />
     </AuthLayout>

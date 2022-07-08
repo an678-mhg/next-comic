@@ -8,7 +8,7 @@ interface NavUserProps {
 
 const NavUser: FC<NavUserProps> = ({ currentUser }) => {
   return (
-    <ul className="bg-[#333] rounded-md p-4">
+    <ul className="bg-[#333] rounded-md p-2">
       <li className="text-text-color font-semibold py-1 px-2 mb-2 flex items-center">
         <div className="w-10 h-10 rounded-full overflow-hidden">
           <img src={currentUser.photoURL} alt={currentUser.displayName} />

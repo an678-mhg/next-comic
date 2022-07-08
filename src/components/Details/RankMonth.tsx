@@ -20,13 +20,19 @@ const RankMonth: FC<PropsType> = ({ top_manga_month }) => {
             className="flex items-center py-2 justify-between border-b-primary-300"
           >
             <div className="flex items-center">
-              <div className="w-[60px] h-[60px]">
-                <img src={item.img} alt={item.name} />
-              </div>
+              <Link href={`/manga${item.href}`}>
+                <a>
+                  <div className="w-[60px] h-[60px] rounded-md overflow-hidden">
+                    <img src={item.img} alt={item.name} />
+                  </div>
+                </a>
+              </Link>
             </div>
             <Link href={`/manga${item.href}`}>
               <a className="flex-1 ml-3">
-                <p className="text-sm font-semibold">{item.name}</p>
+                <p className="text-sm font-semibold hover:text-blue-500">
+                  {item.name}
+                </p>
               </a>
             </Link>
           </li>

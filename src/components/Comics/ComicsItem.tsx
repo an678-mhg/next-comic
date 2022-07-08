@@ -14,7 +14,7 @@ const ComicsItem: FC<PropsType> = ({ item }) => {
           <img src={item.img} alt={item.name} />
         </div>
         <div className={`p-2 bg-primary-300`}>
-          <h3 className="text-text-color font-semibold text-sm mb-2 line-clamp-1">
+          <h3 className="text-text-color font-semibold text-sm mb-2 line-clamp-1 hover:text-blue-500">
             {item.name}
           </h3>
         </div>

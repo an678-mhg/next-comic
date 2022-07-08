@@ -61,7 +61,7 @@ export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
       return {
         props: {
           data,
-          top_manga_month: top_manga_month.data.slice(0, 10),
+          top_manga_month: top_manga_month.data.slice(0, 11),
           slug,
         },
         revalidate: 60,

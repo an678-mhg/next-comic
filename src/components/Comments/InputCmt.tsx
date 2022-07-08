@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { FC, useEffect, useId, useState } from "react";
 import useStore from "../../zustand";
 import { AiOutlineSend } from "react-icons/ai";
 import { BsImageFill } from "react-icons/bs";
@@ -7,9 +7,16 @@ import { useRouter } from "next/router";
 import { uploadImg } from "../../shared/upload";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../config/firebase";
+import { Comments } from "../../models/comment";
 
-const InputCmt = () => {
+interface InputCmtProps {
+  comment?: Comments;
+  handleClose?: () => void;
+}
+
+const InputCmt: FC<InputCmtProps> = ({ comment, handleClose }) => {
   const { currentUser } = useStore();
+  const id = useId();
 
   const [file, setFile] = useState<any>(null);
   const [text, setText] = useState("");
@@ -53,20 +60,28 @@ const InputCmt = () => {
 
     const newComment = {
       href: slug,
-      responseTo: null,
+      responseTo: comment?.id || null,
       content: text,
       image: url,
       displayName: currentUser.displayName,
       avatar: currentUser.photoURL,
       createdAt: Date.now(),
       reactions: [],
+      uid: currentUser.uid,
     };
 
     addDoc(collection(db, "comments"), newComment);
 
     setFile(null);
     setText("");
+    if (handleClose) {
+      handleClose();
+    }
   };
+
+  useEffect(() => {
+    console.log(comment);
+  }, []);
 
   return (
     <form onSubmit={handlePostComment} className="mt-4">
@@ -74,12 +89,12 @@ const InputCmt = () => {
         <div className="w-8 h-8 rounded-full overflow-hidden">
           <img src={currentUser.photoURL} alt={currentUser.displayName} />
         </div>
-        <div className="flex-1 ml-3 relative">
+        <div className="flex-1 ml-3 relative flex items-center">
           <input
             value={text}
             onChange={(e) => setText(e.target.value)}
             placeholder="Viết bình luận công khai..."
-            className="bg-primary-300 py-1 px-4 w-full rounded-full text-text-color"
+            className="bg-primary-300 py-1 pl-4 pr-[80px] w-full rounded-full text-text-color flex-1"
           />
           <button className="absolute right-[10px] top-[50%] translate-y-[-50%]">
             {loading ? (
@@ -89,14 +104,14 @@ const InputCmt = () => {
             )}
           </button>
           <label
-            htmlFor="file"
+            htmlFor={id}
             className="absolute right-[50px] top-[50%] translate-y-[-50%] cursor-pointer"
           >
             <BsImageFill className="w-6 h-6 text-text-color" />
             <input
               onChange={(e) => handleOnChangeFile(e)}
               type="file"
-              id="file"
+              id={id}
               hidden
             />
           </label>

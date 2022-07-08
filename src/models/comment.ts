@@ -8,4 +8,5 @@ export interface Comments {
   avatar: string;
   createdAt: string;
   reactions: any[];
+  uid: string;
 }

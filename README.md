@@ -1,34 +1,32 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Next-Comics
 
-## Getting Started
+A comic reading website
 
-First, run the development server:
+Live demo: [https://next-comics.vercel.app/](https://next-comics.vercel.app/)
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+### Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Sign-In ( with Google, Github )
+- Read the manga by chapter ( Next, Previous chapters, search chapters by name)
+- Search manga by keyword
+- Advanced comic filtering ( min_chapters, category, gender, sort, status)
+- Save viewing history
+- Save comics to favorites ( following )
+- View detailed information of the manga ( name, chapters, author, genre, updated-at, content, ... )
+- Comments ( drop feelings, reply to comments, comment with pictures )
+- Share comics on social networks
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### Preview
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+![Preview 1](https://scontent-hkg4-1.xx.fbcdn.net/v/t1.15752-9/290717828_1072115733435959_6212475330637442786_n.png?_nc_cat=105&ccb=1-7&_nc_sid=ae9488&_nc_ohc=pECgeCJ4hPEAX_X24zO&_nc_ht=scontent-hkg4-1.xx&oh=03_AVJtqEHBzoZv2ZVUFHbrXrbQJLFnJ4rS3_ZNHOVWd-6q-g&oe=62EE84BB)
+![Preview 2](https://scontent.fsgn13-4.fna.fbcdn.net/v/t1.15752-9/292155175_744588473629747_7479166772990652096_n.png?_nc_cat=107&ccb=1-7&_nc_sid=ae9488&_nc_ohc=M3wTGkW36YQAX8sD2IK&_nc_ht=scontent.fsgn13-4.fna&oh=03_AVLLWwdANLNT_RyWxITfoM4nWGg3QEVyIwPpHssTZ576Og&oe=62EDA8CF)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### Technology
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- ReactJS
+- NextJS
+- Typesrcipt
+- Swiper
+- Zustand
+- Firebase
+- TailwindCSS

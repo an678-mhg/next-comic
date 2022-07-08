@@ -18,8 +18,10 @@ const History = () => {
 
   const deleteHistory = () => {
     if (history.length === 0) return;
-    localStorage.setItem("history-next-comic", JSON.stringify([]));
-    setHistory([]);
+    if (window.confirm("Bạn muốn xóa toàn bộ lịch sử đã xem!")) {
+      localStorage.setItem("history-next-comic", JSON.stringify([]));
+      setHistory([]);
+    }
   };
 
   return (

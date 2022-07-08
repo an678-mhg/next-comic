@@ -9,14 +9,15 @@ const Sidebar = () => {
   return (
     <ul className="text-text-color items-center w-full justify-center flex-1 md:flex">
       {sidebar.map((item) => (
-        <li
-          key={item.name}
-          className={`py-2 px-3 md:mr-2 mr-0 hover:bg-primary-100 transition-colors rounded-sm ${
-            router.asPath === item.link && "bg-primary-100"
-          }`}
-        >
+        <li key={item.name}>
           <Link href={item.link}>
-            <a className="uppercase">{item.name}</a>
+            <a
+              className={`py-2 px-3 md:mr-2 mr-0 hover:bg-primary-100 transition-colors rounded-md uppercase block ${
+                router.asPath === item.link && "bg-primary-100"
+              }`}
+            >
+              {item.name}
+            </a>
           </Link>
         </li>
       ))}
