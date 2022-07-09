@@ -14,7 +14,7 @@ const History = () => {
   useEffect(() => {
     const comic = getHistoryComic();
     setHistory(comic);
-  }, [localStorage.getItem("history-next-comic")]);
+  }, []);
 
   const deleteHistory = () => {
     if (history.length === 0) return;
