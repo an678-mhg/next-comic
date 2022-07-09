@@ -2,14 +2,13 @@ import React, { FC } from "react";
 import { NewChapterType, ReadChap } from "../../models/comics";
 import { getImage } from "../../shared/constant";
 import { MenuAlt1Icon, XIcon, ArrowLeftIcon } from "@heroicons/react/solid";
-import Link from "next/link";
 import ButtonChapter from "./ButtonChapter";
+import { useRouter } from "next/router";
 
 interface PropsType {
   results: ReadChap[];
   showChapters: boolean;
   setShowChapters: () => void;
-  detailSlug: string;
   chapters: NewChapterType[];
 }
 
@@ -17,9 +16,10 @@ const ReadView: FC<PropsType> = ({
   results,
   setShowChapters,
   showChapters,
-  detailSlug,
   chapters,
 }) => {
+  const router = useRouter();
+
   return (
     <div className="flex-1 h-screen overflow-y-scroll bg-primary-100 pt-[44px]">
       <div className="absolute top-0 left-0 right-0 py-2 px-4 bg-primary-300 flex items-center justify-between">
@@ -35,12 +35,8 @@ const ReadView: FC<PropsType> = ({
         </button>
         <ButtonChapter chapters={chapters} />
         <div className="flex items-center h-full">
-          <button>
-            <Link href={`/manga/${detailSlug}`}>
-              <a>
-                <ArrowLeftIcon className="w-6 h-6 text-blue-500" />
-              </a>
-            </Link>
+          <button onClick={() => router.back()}>
+            <ArrowLeftIcon className="w-6 h-6 text-blue-500" />
           </button>
         </div>
       </div>

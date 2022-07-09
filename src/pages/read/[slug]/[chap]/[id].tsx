@@ -12,10 +12,9 @@ interface ReadProps {
   results: ReadChap[];
   chapters: NewChapterType[];
   slug: string;
-  detailSlug: string;
 }
 
-const Read: FC<ReadProps> = ({ results, chapters, slug, detailSlug }) => {
+const Read: FC<ReadProps> = ({ results, chapters, slug }) => {
   const [showChapters, setShowChapters] = useState(false);
   const router = useRouter();
 
@@ -38,7 +37,6 @@ const Read: FC<ReadProps> = ({ results, chapters, slug, detailSlug }) => {
 
         <Chapters chapters={chapters} slug={slug} showChapters={showChapters} />
         <ReadView
-          detailSlug={detailSlug}
           showChapters={showChapters}
           results={results}
           setShowChapters={handleShowChapters}
@@ -65,7 +63,6 @@ export const getServerSideProps = async ({
           results: data.results,
           chapters: data.chapters,
           slug: "/" + slug + "/" + chap + "/" + id,
-          detailSlug: slug,
         },
       };
     } catch (error) {
