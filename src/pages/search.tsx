@@ -20,7 +20,7 @@ interface SearchProps {
 const Search: FC<SearchProps> = ({ data, keyword }) => {
   return (
     <>
-      <Meta />
+      <Meta title={`Search | ${keyword}`} />
       <MainLayout>
         <div className="pt-4">
           <Title>Kết quả cho: {keyword}</Title>

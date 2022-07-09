@@ -73,7 +73,7 @@ const Categories: FC<CategoriesProps> = ({ data, results }) => {
   return (
     <>
       <MainLayout>
-        <Meta />
+        <Meta title="Filter" />
         <form onSubmit={handleSubmit}>
           {showFilter && (
             <div className="grid lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-4 pt-4">

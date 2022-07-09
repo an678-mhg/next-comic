@@ -7,6 +7,7 @@ import GridLayout from "../components/Layout/GridLayout";
 import { getHistoryComic } from "../shared/saveHistory";
 import ComicsItem from "../components/Comics/ComicsItem";
 import { ComicType } from "../models/comics";
+import Meta from "../components/Meta";
 
 const History = () => {
   const [history, setHistory] = useState<ComicType[]>([]);
@@ -26,6 +27,7 @@ const History = () => {
 
   return (
     <MainLayout>
+      <Meta title="History" />
       <div className="pt-4">
         <div className="flex items-center justify-between">
           <Title
