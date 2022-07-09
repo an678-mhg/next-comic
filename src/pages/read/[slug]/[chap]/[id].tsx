@@ -6,7 +6,6 @@ import Meta from "../../../../components/Meta";
 import Chapters from "../../../../components/Read/Chapters";
 import ReadView from "../../../../components/Read/ReadView";
 import { NewChapterType, ReadChap } from "../../../../models/comics";
-import { IsBrowser } from "../../../../components/IsBrowser";
 
 interface ReadProps {
   results: ReadChap[];
@@ -27,7 +26,7 @@ const Read: FC<ReadProps> = ({ results, chapters, slug }) => {
   }, []);
 
   return (
-    <IsBrowser>
+    <>
       <div className="flex">
         <Meta
           title="NextComics | Website đọc truyện tranh"
@@ -43,7 +42,7 @@ const Read: FC<ReadProps> = ({ results, chapters, slug }) => {
           chapters={chapters}
         />
       </div>
-    </IsBrowser>
+    </>
   );
 };
 

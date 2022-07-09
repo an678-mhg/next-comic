@@ -2,7 +2,6 @@ import { GetServerSidePropsContext } from "next";
 import { useRouter } from "next/router";
 import React, { FC, useEffect, useState } from "react";
 import ComicsItem from "../components/Comics/ComicsItem";
-import { IsBrowser } from "../components/IsBrowser";
 import GridLayout from "../components/Layout/GridLayout";
 import MainLayout from "../components/Layout/MainLayout";
 import Meta from "../components/Meta";
@@ -72,7 +71,7 @@ const Categories: FC<CategoriesProps> = ({ data, results }) => {
   }, [router.asPath]);
 
   return (
-    <IsBrowser>
+    <>
       <MainLayout>
         <Meta />
         <form onSubmit={handleSubmit}>
@@ -133,7 +132,7 @@ const Categories: FC<CategoriesProps> = ({ data, results }) => {
 
         <PaginationCustomer totalPage={results.totalPage} />
       </MainLayout>
-    </IsBrowser>
+    </>
   );
 };
 

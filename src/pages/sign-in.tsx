@@ -8,6 +8,7 @@ import { signInWithPopup } from "firebase/auth";
 import { toast } from "react-toastify";
 import useStore from "../zustand";
 import { useRouter } from "next/router";
+import { BarWave } from "react-cssfx-loading";
 
 const SignIn = () => {
   const handleLogin = async (provider: any) => {
@@ -29,6 +30,14 @@ const SignIn = () => {
         : router.push("/");
     }
   }, [currentUser]);
+
+  if (typeof currentUser === "undefined") {
+    return (
+      <div className="flex items-center justify-center bg-primary-100 fixed top-0 bottom-0 right-0 left-0">
+        <BarWave />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-primary-100">

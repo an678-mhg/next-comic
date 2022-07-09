@@ -2,7 +2,6 @@ import type { GetStaticProps } from "next";
 import { FC } from "react";
 import getHomeApi from "../services/home";
 import SlideViews from "../components/Comics/SlideViews";
-import { IsBrowser } from "../components/IsBrowser";
 import Meta from "../components/Meta";
 import Title from "../components/Title";
 import MainLayout from "../components/Layout/MainLayout";
@@ -18,28 +17,26 @@ interface HomeProps {
 const Home: FC<HomeProps> = ({ data }) => {
   return (
     <>
-      <IsBrowser>
-        <MainLayout>
-          <Meta />
-          <div>
-            {Object.keys(data).map((item) => (
-              <div key={item}>
-                <div className="py-4">
-                  <Title
-                    position="end"
-                    icons={
-                      <ChevronRightIcon className="w-6 h-6 ml-1 text-blue-500" />
-                    }
-                  >
-                    {item}
-                  </Title>
-                </div>
-                <SlideViews data={data[item]} />
+      <MainLayout>
+        <Meta />
+        <div>
+          {Object.keys(data).map((item) => (
+            <div key={item}>
+              <div className="py-4">
+                <Title
+                  position="end"
+                  icons={
+                    <ChevronRightIcon className="w-6 h-6 ml-1 text-blue-500" />
+                  }
+                >
+                  {item}
+                </Title>
               </div>
-            ))}
-          </div>
-        </MainLayout>
-      </IsBrowser>
+              <SlideViews data={data[item]} />
+            </div>
+          ))}
+        </div>
+      </MainLayout>
     </>
   );
 };

@@ -2,7 +2,6 @@ import React, { FC } from "react";
 import type { GetServerSidePropsContext } from "next";
 import searchApi from "../services/search";
 import { ComicType } from "../models/comics";
-import { IsBrowser } from "../components/IsBrowser";
 import Meta from "../components/Meta";
 import MainLayout from "../components/Layout/MainLayout";
 import Title from "../components/Title";
@@ -20,7 +19,7 @@ interface SearchProps {
 
 const Search: FC<SearchProps> = ({ data, keyword }) => {
   return (
-    <IsBrowser>
+    <>
       <Meta />
       <MainLayout>
         <div className="pt-4">
@@ -37,7 +36,7 @@ const Search: FC<SearchProps> = ({ data, keyword }) => {
           <PaginationCustomer totalPage={data.totalPage} />
         </div>
       </MainLayout>
-    </IsBrowser>
+    </>
   );
 };
 

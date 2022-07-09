@@ -4,7 +4,6 @@ import { getDetailsApi } from "../../services/details";
 import { getRankApi } from "../../services/rank";
 import InfoManga from "../../components/Details/InfoManga";
 import RankMonth from "../../components/Details/RankMonth";
-import { IsBrowser } from "../../components/IsBrowser";
 import Meta from "../../components/Meta";
 import MainLayout from "../../components/Layout/MainLayout";
 import { ComicType } from "../../models/comics";
@@ -29,7 +28,7 @@ const DetailManga: FC<DetailMangaProps> = ({ data, top_manga_month, slug }) => {
   }, [slug]);
 
   return (
-    <IsBrowser>
+    <>
       <Meta title={data.name} image={data.img} description={data.content} />
 
       <MainLayout>
@@ -39,7 +38,7 @@ const DetailManga: FC<DetailMangaProps> = ({ data, top_manga_month, slug }) => {
         </div>
         <Comments />
       </MainLayout>
-    </IsBrowser>
+    </>
   );
 };
 

@@ -3,7 +3,7 @@ import useInnerWidth from "./useInnerWidth";
 
 const useSlideViews = () => {
   const width = useInnerWidth();
-  const [slide, setSlide] = useState(5);
+  const [slide, setSlide] = useState(6);
 
   useEffect(() => {
     if (width > 1200) {
