@@ -16,10 +16,9 @@ const SocialShare: FC<SocialShareProps> = ({ title }) => {
   return (
     <div className="flex gap-2 flex-wrap my-3">
       {providers.map((provider) => (
-        <Tippy content={provider.name}>
+        <Tippy key={provider.icon} content={provider.name}>
           <button>
             <a
-              key={provider.icon}
               href={provider.link(`${BASE_URL}${router.asPath}`, title)}
               target="_blank"
               rel="noopener noreferrer"
