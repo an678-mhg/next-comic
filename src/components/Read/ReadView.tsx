@@ -1,9 +1,13 @@
 import React, { FC } from "react";
 import { NewChapterType, ReadChap } from "../../models/comics";
 import { getImage } from "../../shared/constant";
-import { MenuAlt1Icon, XIcon, ArrowLeftIcon } from "@heroicons/react/solid";
+import { MenuAlt1Icon, XIcon } from "@heroicons/react/solid";
+import { AiOutlineHome } from "react-icons/ai";
 import ButtonChapter from "./ButtonChapter";
 import { useRouter } from "next/router";
+import Tippy from "@tippyjs/react";
+import "tippy.js/dist/tippy.css";
+import Link from "next/link";
 
 interface PropsType {
   results: ReadChap[];
@@ -35,9 +39,15 @@ const ReadView: FC<PropsType> = ({
         </button>
         <ButtonChapter chapters={chapters} />
         <div className="flex items-center h-full">
-          <button onClick={() => router.back()}>
-            <ArrowLeftIcon className="w-6 h-6 text-blue-500" />
-          </button>
+          <Tippy content="Trở về trang chủ">
+            <button>
+              <Link href="/">
+                <a>
+                  <AiOutlineHome className="w-6 h-6 text-blue-500" />
+                </a>
+              </Link>
+            </button>
+          </Tippy>
         </div>
       </div>
 

@@ -66,9 +66,7 @@ export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
         revalidate: 60,
       };
     } catch (error) {
-      return {
-        notFound: true,
-      };
+      console.log(error);
     }
   }
 };

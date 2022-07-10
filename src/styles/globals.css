@@ -4331,3 +4331,16 @@ textarea.ant-pagination-options-quick-jumper input {
   transform: scale(1.3);
   cursor: pointer;
 }
+
+.skeleton {
+  animation: skeleton 1s linear infinite alternate;
+}
+
+@keyframes skeleton {
+  0% {
+    background-color: hsl(200, 20%, 70%);
+  }
+  100% {
+    background-color: hsl(200, 20%, 95%);
+  }
+}

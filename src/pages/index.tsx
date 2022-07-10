@@ -1,4 +1,3 @@
-import type { GetStaticProps } from "next";
 import { FC } from "react";
 import getHomeApi from "../services/home";
 import SlideViews from "../components/Comics/SlideViews";
@@ -45,7 +44,7 @@ const Home: FC<HomeProps> = ({ data }) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps = async () => {
   try {
     const data = await getHomeApi();
 
@@ -57,9 +56,6 @@ export const getStaticProps: GetStaticProps = async () => {
     };
   } catch (error) {
     console.log(error);
-    return {
-      notFound: true,
-    };
   }
 };
 

@@ -5,7 +5,7 @@ const useInnerWidth = () => {
     if (typeof window !== "undefined") {
       return window.innerWidth;
     }
-    return 499;
+    return null;
   });
 
   useEffect(() => {
