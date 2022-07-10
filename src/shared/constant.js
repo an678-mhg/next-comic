@@ -1,4 +1,4 @@
-export const BASE_URL = "https://next-comics.vercel.app";
+export const BASE_URL = "https://next-comicszzz.vercel.app";
 export const API_URL = "http://www.nettruyenco.com";
 export const API_CLOUDINARY =
   "https://api.cloudinary.com/v1_1/annnn/image/upload";

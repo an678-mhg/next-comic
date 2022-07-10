@@ -1,4 +1,4 @@
-import { GetServerSidePropsContext } from "next";
+import { GetStaticPropsContext, GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import React, { FC, useCallback, useEffect, useState } from "react";
 import { getReadApi } from "../../../../services/read";
@@ -46,9 +46,14 @@ const Read: FC<ReadProps> = ({ results, chapters, slug }) => {
   );
 };
 
-export const getServerSideProps = async ({
-  params,
-}: GetServerSidePropsContext) => {
+export const getStaticPaths: GetStaticPaths = () => {
+  return {
+    paths: [],
+    fallback: "blocking",
+  };
+};
+
+export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
   const slug = params?.slug as string;
   const chap = params?.chap as string;
   const id = params?.id as string;
@@ -63,6 +68,7 @@ export const getServerSideProps = async ({
           chapters: data.chapters,
           slug: "/" + slug + "/" + chap + "/" + id,
         },
+        revalidate: 60,
       };
     } catch (error) {
       console.log(error);
