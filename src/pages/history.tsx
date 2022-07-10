@@ -37,7 +37,7 @@ const History = () => {
           <Title
             icons={<AiOutlineHistory className="w-6 h-6 text-blue-500 ml-2" />}
           >
-            Lịch sử đã xem
+            Lịch sử
           </Title>
 
           <button onClick={deleteHistory}>
