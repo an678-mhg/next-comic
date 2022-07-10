@@ -121,7 +121,11 @@ const CommentItem: FC<CommentItemProps> = ({ item, comments }) => {
 
       {showReply && (
         <div>
-          <InputCmt handleClose={handleCloseInput} comment={item} />
+          <InputCmt
+            placehoder={`Trả lời ${item.displayName}....`}
+            handleClose={handleCloseInput}
+            comment={item}
+          />
         </div>
       )}
 

@@ -13,9 +13,10 @@ import { toast } from "react-toastify";
 interface InputCmtProps {
   comment?: Comments;
   handleClose?: () => void;
+  placehoder?: string;
 }
 
-const InputCmt: FC<InputCmtProps> = ({ comment, handleClose }) => {
+const InputCmt: FC<InputCmtProps> = ({ comment, handleClose, placehoder }) => {
   const { currentUser } = useStore();
   const id = useId();
 
@@ -101,7 +102,7 @@ const InputCmt: FC<InputCmtProps> = ({ comment, handleClose }) => {
           <input
             value={text}
             onChange={(e) => setText(e.target.value)}
-            placeholder="Viết bình luận công khai..."
+            placeholder={`${placehoder || "Viết bình luận công khai..."}`}
             className="bg-primary-300 py-1 pl-4 pr-[80px] w-full rounded-full text-text-color flex-1"
           />
           <button className="absolute right-[10px] top-[50%] translate-y-[-50%]">
