@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Meta from "../components/Meta";
 import MainLayout from "../components/Layout/MainLayout";
 import Title from "../components/Title";
@@ -9,28 +9,21 @@ import { useRouter } from "next/router";
 import { ComicType } from "../models/comics";
 import searchApi from "../services/search";
 import Skeleton from "../components/Skeleton";
+import useSWR from "swr";
+import Error from "../components/Error";
 
 const Search = () => {
   const { query } = useRouter();
-  const [search, setSearch] = useState<any>();
-  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    (async () => {
-      setLoading(true);
-      try {
-        const data = await searchApi.getSearchKeyWord(
-          query?.keyword as string,
-          Number(query?.page)
-        );
-        setSearch(data);
-        setLoading(false);
-      } catch (error) {
-        console.log(error);
-        setLoading(false);
-      }
-    })();
-  }, [query?.keyword, query?.page]);
+  const { data: search, error } = useSWR(
+    `search-${query?.keyword}-${query?.page}`,
+    () =>
+      searchApi.getSearchKeyWord(query?.keyword as string, Number(query?.page))
+  );
+
+  if (error) {
+    return <Error />;
+  }
 
   return (
     <>
@@ -44,7 +37,7 @@ const Search = () => {
           <Title>Kết quả cho: {query?.keyword}</Title>
 
           <div className="mt-4">
-            {!loading ? (
+            {search ? (
               search?.data?.length > 0 ? (
                 <GridLayout>
                   {search?.data?.map((item: ComicType) => (

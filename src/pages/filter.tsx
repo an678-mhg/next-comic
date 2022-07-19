@@ -1,6 +1,8 @@
 import { Pagination } from "antd";
 import React, { FC, useEffect, useState } from "react";
+import useSWR from "swr";
 import ComicsItem from "../components/Comics/ComicsItem";
+import Error from "../components/Error";
 import GridLayout from "../components/Layout/GridLayout";
 import MainLayout from "../components/Layout/MainLayout";
 import Meta from "../components/Meta";
@@ -56,40 +58,26 @@ const Categories: FC<CategoriesProps> = ({ data }) => {
     setQuery({ ...query, page: value });
   };
 
-  const [results, setResults] = useState<any>();
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    (async () => {
-      setLoading(true);
-      try {
-        const data = await searchApi.getSearchAdvanced(
-          query.gender,
-          query.genres,
-          query.min_chapters,
-          query.sort,
-          query.status,
-          query.page
-        );
-        setResults(data);
-        setLoading(false);
-      } catch (error) {
-        console.log(error);
-        setLoading(false);
-      }
-    })();
-  }, [
-    query.gender,
-    query.genres.length,
-    query.min_chapters,
-    query.sort,
-    query.status,
-    query.page,
-  ]);
+  const { data: results, error } = useSWR(
+    `filter-${query.gender}-${query.genres}-${query.min_chapters}-${query.page}-${query.sort}-${query.status}`,
+    () =>
+      searchApi.getSearchAdvanced(
+        query.gender,
+        query.genres,
+        query.min_chapters,
+        query.sort,
+        query.status,
+        query.page
+      )
+  );
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [query.page]);
+
+  if (error) {
+    return <Error />;
+  }
 
   return (
     <>
@@ -134,7 +122,7 @@ const Categories: FC<CategoriesProps> = ({ data }) => {
         </div>
 
         <div className="mt-4">
-          {!loading ? (
+          {results ? (
             results?.data?.length > 0 ? (
               <GridLayout>
                 {results?.data?.map((item: ComicType) => (
@@ -176,6 +164,9 @@ export const getStaticProps = async () => {
     };
   } catch (error) {
     console.log(error);
+    // return {
+    //   notFound: true,
+    // };
   }
 };
 

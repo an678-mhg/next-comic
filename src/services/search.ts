@@ -1,6 +1,4 @@
-import axios from "axios";
 import client from ".";
-import { api } from "../shared/constant";
 
 const searchApi = {
   getFullFilterApi: async () => {
@@ -15,8 +13,8 @@ const searchApi = {
     status: number = -1,
     page: number = 1
   ) => {
-    const res = await axios.get(
-      `${api}/v1/search/advanced?genres=${genres}&gender=${gender}&status=${status}&minchapter=${min_chapters}&sort=${sort}&page=${page}`
+    const res = await client.get(
+      `/search/advanced?genres=${genres}&gender=${gender}&status=${status}&minchapter=${min_chapters}&sort=${sort}&page=${page}`
     );
     return res.data;
   },
@@ -25,8 +23,8 @@ const searchApi = {
     page: number | undefined
   ) => {
     if (keyword) {
-      const res = await axios.get(
-        `${api}/v1/search?keyword=${keyword}&page=${page || 1}`
+      const res = await client.get(
+        `/search?keyword=${keyword}&page=${page || 1}`
       );
       return res.data;
     }
