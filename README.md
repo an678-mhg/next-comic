@@ -30,3 +30,4 @@ Live demo: [https://next-comics.vercel.app/](https://next-comics.vercel.app/)
 - Zustand
 - Firebase
 - TailwindCSS
+- SWR

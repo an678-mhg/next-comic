@@ -10,8 +10,3 @@ export const getRankApi = async (
   );
   return res.data;
 };
-
-export const getAllCategoriesApi = async () => {
-  const res = await client.get("/rank/the-loai");
-  return res.data;
-};

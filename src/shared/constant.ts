@@ -6,14 +6,14 @@ export const API_CLOUDINARY =
   "https://api.cloudinary.com/v1_1/annnn/image/upload";
 export const UPLOAD_KEY = `${process.env.NEXT_PUBLIC_UPLOAD_KEY}`;
 
-export const getImage = (img) => {
+export const getImage = (img: string) => {
   return `${BASE_URL}/api/handler?url=${encodeURIComponent(img)}`;
 };
 
 export const api = "https://manga-api-production.up.railway.app";
 
-export const calculateCreatedTime = (timeCreated) => {
-  let periods = {
+export const calculateCreatedTime = (timeCreated: any) => {
+  let periods: any = {
     year: 365 * 30 * 24 * 60 * 60 * 1000,
     month: 30 * 24 * 60 * 60 * 1000,
     week: 7 * 24 * 60 * 60 * 1000,
@@ -37,7 +37,7 @@ export const calculateCreatedTime = (timeCreated) => {
 export const providers = [
   {
     icon: "https://raw.githubusercontent.com/napthedev/blog/11f0a675a7d317cff3719be9ab2f7d94344a5eac/client/public/share-icon/facebook.svg",
-    link: (url, title) =>
+    link: (url: string, title: string) =>
       `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
         url
       )}&t=${title}`,
@@ -45,7 +45,7 @@ export const providers = [
   },
   {
     icon: "https://raw.githubusercontent.com/napthedev/blog/11f0a675a7d317cff3719be9ab2f7d94344a5eac/client/public/share-icon/twitter.svg",
-    link: (url, title) =>
+    link: (url: string, title: string) =>
       `http://twitter.com/share?text=${encodeURIComponent(
         title
       )}&url=${encodeURIComponent(url)}`,
@@ -53,7 +53,7 @@ export const providers = [
   },
   {
     icon: "https://raw.githubusercontent.com/napthedev/blog/11f0a675a7d317cff3719be9ab2f7d94344a5eac/client/public/share-icon/reddit.svg",
-    link: (url, title) =>
+    link: (url: string, title: string) =>
       `http://www.reddit.com/submit?url=${encodeURIComponent(
         url
       )}&title=${encodeURIComponent(title)}`,
@@ -61,13 +61,13 @@ export const providers = [
   },
   {
     icon: "https://raw.githubusercontent.com/napthedev/blog/11f0a675a7d317cff3719be9ab2f7d94344a5eac/client/public/share-icon/email.svg",
-    link: (url, title) =>
+    link: (url: string, title: string) =>
       `mailto:?subject=${encodeURIComponent(title)}&body=${url}`,
     name: "Email",
   },
 ];
 
-export const copyToClipboard = (text) => {
+export const copyToClipboard = (text: string) => {
   try {
     if (navigator.clipboard && window.isSecureContext) {
       navigator.clipboard.writeText(text);
@@ -81,7 +81,7 @@ export const copyToClipboard = (text) => {
       document.body.appendChild(textArea);
       textArea.focus();
       textArea.select();
-      return new Promise((res, rej) => {
+      return new Promise((res: any, rej: any) => {
         document.execCommand("copy") ? res() : rej();
         textArea.remove();
         toast.success("Copy liên kết thành công");
