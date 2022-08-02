@@ -22,7 +22,7 @@ const RankMonth: FC<PropsType> = ({ top_manga_month }) => {
             <div className="flex items-center">
               <Link href={`/manga${item.href}`}>
                 <a>
-                  <div className="w-[60px] h-[60px] rounded-md overflow-hidden">
+                  <div className="w-[60px] aspect-auto rounded-md overflow-hidden">
                     <img src={item.img} alt={item.name} />
                   </div>
                 </a>

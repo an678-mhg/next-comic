@@ -12,7 +12,7 @@ const Sidebar = () => {
         <li key={item.name}>
           <Link href={item.link}>
             <a
-              className={`py-2 px-3 md:mr-2 mr-0 hover:bg-primary-100 transition-colors rounded-md uppercase block ${
+              className={`py-2 px-3 md:mr-2 mr-0 hover:bg-primary-100 transition-colors uppercase block ${
                 router.asPath === item.link && "bg-primary-100"
               }`}
             >
