@@ -22,10 +22,7 @@ Live demo: [https://next-comics.vercel.app/](https://next-comics.vercel.app/)
 
 ### Technology
 
-- ReactJS
 - NextJS
-- Typesrcipt
-- Swiper
 - Zustand
 - Firebase
 - TailwindCSS
