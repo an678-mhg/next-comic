@@ -36,7 +36,7 @@ export const calculateCreatedTime = (timeCreated: any) => {
 
 export const providers = [
   {
-    icon: "https://raw.githubusercontent.com/napthedev/blog/11f0a675a7d317cff3719be9ab2f7d94344a5eac/client/public/share-icon/facebook.svg",
+    icon: "/share-icon/facebook.svg",
     link: (url: string, title: string) =>
       `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
         url
@@ -44,7 +44,7 @@ export const providers = [
     name: "Facebook",
   },
   {
-    icon: "https://raw.githubusercontent.com/napthedev/blog/11f0a675a7d317cff3719be9ab2f7d94344a5eac/client/public/share-icon/twitter.svg",
+    icon: "/share-icon/twitter.svg",
     link: (url: string, title: string) =>
       `http://twitter.com/share?text=${encodeURIComponent(
         title
@@ -52,7 +52,7 @@ export const providers = [
     name: "Twitter",
   },
   {
-    icon: "https://raw.githubusercontent.com/napthedev/blog/11f0a675a7d317cff3719be9ab2f7d94344a5eac/client/public/share-icon/reddit.svg",
+    icon: "/share-icon/reddit.svg",
     link: (url: string, title: string) =>
       `http://www.reddit.com/submit?url=${encodeURIComponent(
         url
@@ -60,7 +60,7 @@ export const providers = [
     name: "Reddit",
   },
   {
-    icon: "https://raw.githubusercontent.com/napthedev/blog/11f0a675a7d317cff3719be9ab2f7d94344a5eac/client/public/share-icon/email.svg",
+    icon: "/share-icon/email.svg",
     link: (url: string, title: string) =>
       `mailto:?subject=${encodeURIComponent(title)}&body=${url}`,
     name: "Email",
