@@ -9,9 +9,11 @@ interface PropsType {
 const RankMonth: FC<PropsType> = ({ top_manga_month }) => {
   return (
     <div className="lg:w-[320px] w-full bg-primary-300 p-2 mt-4 text-text-color rounded-md">
-      <h1 className="my-4 text-center font-semibold text-xl text-text-color">
-        Top tháng
-      </h1>
+      <div className="my-4">
+        <h1 className="text-center font-semibold text-xl text-text-color">
+          Top tháng
+        </h1>
+      </div>
       <hr />
       <ul>
         {top_manga_month.map((item) => (

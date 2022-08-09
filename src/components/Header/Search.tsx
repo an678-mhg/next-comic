@@ -26,9 +26,9 @@ const Search: FC<SearchProps> = ({ handleClose }) => {
         onClick={(e) => e.stopPropagation()}
         className="bg-primary-200 w-[700px] max-w-[calc(100%-32px)] p-4 rounded-md mt-10 mx-auto"
       >
-        <h1 className="font-semibold text-text-color text-2xl mb-4">
-          Tìm truyện
-        </h1>
+        <div className="mb-4">
+          <h1 className="font-semibold text-text-color text-2xl">Tìm truyện</h1>
+        </div>
         <input
           value={keyword}
           onChange={(e) => setKeyword(e.target.value)}
