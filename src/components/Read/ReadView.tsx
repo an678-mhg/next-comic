@@ -22,8 +22,6 @@ const ReadView: FC<PropsType> = ({
   showChapters,
   chapters,
 }) => {
-  const router = useRouter();
-
   return (
     <div className="flex-1 h-screen overflow-y-scroll bg-primary-100 pt-[44px]">
       <div className="absolute top-0 left-0 right-0 py-2 px-4 bg-primary-300 flex items-center justify-between">

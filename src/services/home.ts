@@ -1,10 +1,15 @@
 import client from ".";
+import { ComicType } from "../models/comics";
 
 interface HomeApi {
   [key: string]: string;
 }
 
-const getHomeApi = async () => {
+interface HomeData {
+  [key: string]: ComicType[];
+}
+
+const getHomeApi = async (): Promise<HomeData> => {
   const data: HomeApi = {
     "Truyện mới cập nhật": "/home",
     "Truyện nổi bật": "/rank/the-loai/all?status=-1&sort=10",

@@ -1,5 +1,4 @@
-import { GetStaticPaths, GetStaticPropsContext } from "next";
-import React, { FC, useEffect } from "react";
+import React, { useEffect } from "react";
 import { getDetailsApi } from "../../services/details";
 import { getRankApi } from "../../services/rank";
 import InfoManga from "../../components/Details/InfoManga";
@@ -7,71 +6,61 @@ import RankMonth from "../../components/Details/RankMonth";
 import Meta from "../../components/Meta";
 import MainLayout from "../../components/Layout/MainLayout";
 import { ComicType } from "../../models/comics";
-import { Details } from "../../models/details";
 import { addComicToLocal } from "../../shared/saveHistory";
 import Comments from "../../components/Details/Comments";
+import useSWR from "swr";
+import { useRouter } from "next/router";
+import Error from "../../components/Error";
 
-interface DetailMangaProps {
-  data: Details;
-  top_manga_month: ComicType[];
-  slug: string;
-}
+const DetailManga = () => {
+  const { slug } = useRouter().query;
 
-const DetailManga: FC<DetailMangaProps> = ({ data, top_manga_month, slug }) => {
+  const { data, error } = useSWR(`details-${slug}`, () =>
+    getDetailsApi(String(slug))
+  );
+
+  const { data: rankMonth, error: rankMonthError } = useSWR("rank-month", () =>
+    getRankApi("all", "11")
+  );
+
   useEffect(() => {
-    const comic: ComicType = {
-      name: data.name,
-      href: `/${slug}`,
-      img: data.img,
-    };
-    addComicToLocal(comic);
-  }, [slug]);
+    if (data?.name) {
+      const comic: ComicType = {
+        name: data.name,
+        href: `/${slug}`,
+        img: data.img,
+      };
+      addComicToLocal(comic);
+    }
+  }, [slug, data]);
+
+  if (error || rankMonthError) {
+    return <Error />;
+  }
 
   return (
     <>
-      <Meta title={data.name} image={data.img} description={data.content} />
+      {!data || !rankMonth ? (
+        <h1>Loading....</h1>
+      ) : (
+        <>
+          <Meta
+            title={data?.name}
+            image={data.img}
+            description={data.content}
+          />
 
-      <MainLayout>
-        <div className="flex flex-col lg:flex-row">
-          <InfoManga data={data} slug={slug} />
-          <RankMonth top_manga_month={top_manga_month} />
-        </div>
-        <Comments />
-      </MainLayout>
+          <MainLayout>
+            <div className="flex flex-col lg:flex-row">
+              <InfoManga data={data} slug={String(slug)} />
+              <RankMonth top_manga_month={rankMonth} />
+            </div>
+            <Comments />
+          </MainLayout>
+        </>
+      )}
     </>
   );
-};
-
-export const getStaticPaths: GetStaticPaths = () => {
-  return {
-    paths: [],
-    fallback: "blocking",
-  };
-};
-
-export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
-  const slug = params?.slug as string;
-
-  if (slug) {
-    try {
-      const data = await getDetailsApi(slug);
-      const top_manga_month = await getRankApi("all", "11");
-
-      return {
-        props: {
-          data,
-          top_manga_month: top_manga_month.data.slice(0, 11),
-          slug,
-        },
-        revalidate: 60,
-      };
-    } catch (error) {
-      console.log(error);
-      return {
-        notFound: true,
-      };
-    }
-  }
 };
 
 export default DetailManga;
