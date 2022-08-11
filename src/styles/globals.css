@@ -173,3 +173,11 @@ a {
 .banner::before {
   background: linear-gradient(0deg, #202125, rgba(32, 33, 37, 0) 50%, #202125);
 }
+
+.emoji {
+  transition: all ease-in-out 0.1s;
+}
+
+.emoji:hover {
+  transform: scale(1.3);
+}

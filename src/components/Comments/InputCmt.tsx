@@ -9,6 +9,7 @@ import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import { Comments } from "../../models/comment";
 import { toast } from "react-toastify";
+import { CircularProgress } from "react-cssfx-loading";
 
 interface InputCmtProps {
   comment?: Comments;
@@ -107,7 +108,7 @@ const InputCmt: FC<InputCmtProps> = ({ comment, handleClose, placehoder }) => {
           />
           <button className="absolute right-[10px] top-[50%] translate-y-[-50%]">
             {loading ? (
-              <div className="loader"></div>
+              <CircularProgress width="25px" height="25px" />
             ) : (
               <AiOutlineSend className="w-6 h-6 text-text-color" />
             )}
