@@ -41,7 +41,10 @@ const BannerItem: FC<BannerItemProps> = ({ item }) => {
               .map((p) => (
                 <div key={p} className="flex items-center flex-wrap">
                   {item.info[p].split(",").map((item) => (
-                    <p className="px-2 py-1 rounded-md border-2 mr-2 mb-2">
+                    <p
+                      key={item}
+                      className="px-2 py-1 rounded-md border-2 mr-2 mb-2"
+                    >
                       {item}
                     </p>
                   ))}
