@@ -11,17 +11,18 @@ import Comments from "../../components/Details/Comments";
 import useSWR from "swr";
 import { useRouter } from "next/router";
 import Error from "../../components/Error";
+import SkeletonDetails from "../../components/Skeleton/SkeletonDetails";
 
 const DetailManga = () => {
   const { slug } = useRouter().query;
 
-  const { data, error } = useSWR(`details-${slug}`, () =>
-    getDetailsApi(String(slug))
-  );
+  console.log(slug);
 
-  const { data: rankMonth, error: rankMonthError } = useSWR("rank-month", () =>
-    getRankApi("all", "11")
-  );
+  const { data, error } = useSWR(`details-${slug}`, () => {
+    if (slug) {
+      return getDetailsApi(String(slug));
+    }
+  });
 
   useEffect(() => {
     if (data?.name) {
@@ -34,31 +35,34 @@ const DetailManga = () => {
     }
   }, [slug, data]);
 
-  if (error || rankMonthError) {
+  if (error) {
     return <Error />;
   }
 
   return (
     <>
-      {!data || !rankMonth ? (
-        <h1>Loading....</h1>
-      ) : (
-        <>
-          <Meta
-            title={data?.name}
-            image={data.img}
-            description={data.content}
-          />
+      <>
+        <Meta
+          title={data?.name!}
+          image={data?.img!}
+          description={data?.content!}
+        />
 
-          <MainLayout>
-            <div className="flex flex-col lg:flex-row">
-              <InfoManga data={data} slug={String(slug)} />
-              <RankMonth top_manga_month={rankMonth} />
-            </div>
-            <Comments />
-          </MainLayout>
-        </>
-      )}
+        <MainLayout>
+          {!data ? (
+            <>
+              <SkeletonDetails />
+            </>
+          ) : (
+            <>
+              <div className="flex flex-col lg:flex-row container">
+                <InfoManga data={data} slug={String(slug)} />
+              </div>
+              <Comments />
+            </>
+          )}
+        </MainLayout>
+      </>
     </>
   );
 };

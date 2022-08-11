@@ -1,5 +1,5 @@
 import client from ".";
-import { ComicType } from "../models/comics";
+import { Banner, ComicType } from "../models/comics";
 
 interface HomeApi {
   [key: string]: string;
@@ -30,6 +30,11 @@ const getHomeApi = async (): Promise<HomeData> => {
   }, {} as any);
 
   return homeResult;
+};
+
+export const getBanner = async (): Promise<Banner[]> => {
+  const res = await client.get("/home/banner");
+  return res.data.data;
 };
 
 export default getHomeApi;

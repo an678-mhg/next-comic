@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import MainLayout from "../components/Layout/MainLayout";
 import ProtectedLayout from "../components/Layout/ProtectedLayout";
 import Title from "../components/Title";
@@ -7,9 +7,45 @@ import { RiUserFollowLine } from "react-icons/ri";
 import GridLayout from "../components/Layout/GridLayout";
 import ComicsItem from "../components/Comics/ComicsItem";
 import Meta from "../components/Meta";
+import { FaEdit } from "react-icons/fa";
+import { FiTrash2 } from "react-icons/fi";
+import { AiOutlineCloseCircle } from "react-icons/ai";
+import { ComicType } from "../models/comics";
+import { deleteFollowingApi } from "../shared/firebase";
+import { AiOutlineClear } from "react-icons/ai";
 
 const Following = () => {
-  const { following } = FollowingStore();
+  const { following, deleteFollow } = FollowingStore();
+
+  const [check, setCheck] = useState<ComicType[]>([]);
+
+  const [showEdit, setShowEdit] = useState(false);
+
+  const handleSelect = (comic: ComicType) => {
+    if (check.find((item) => item?.id === comic?.id)) {
+      return setCheck(check.filter((item) => item?.id !== comic?.id));
+    }
+    return setCheck((prev) => [...prev, comic]);
+  };
+
+  const handleDeleteFollowing = (e: any) => {
+    e.stopPropagation();
+
+    if (check.length === 0) {
+      return;
+    }
+
+    if (!window.confirm("Bạn có chắc muốn xóa!")) {
+      return;
+    }
+
+    check.forEach((item) => {
+      if (item?.id) {
+        deleteFollowingApi(item?.id);
+      }
+      deleteFollow(item);
+    });
+  };
 
   return (
     <ProtectedLayout>
@@ -19,8 +55,8 @@ const Following = () => {
           description="Website được tạo bởi Nextjs và Reactjs"
           image="https://res.cloudinary.com/annnn/image/upload/v1657346489/290717828_1072115733435959_6212475330637442786_n_k49hf0.png"
         />
-        <div>
-          <div className="pt-4">
+        <div className="container">
+          <div className="pt-4 flex items-center justify-between">
             <Title
               icons={
                 <RiUserFollowLine className="w-6 h-6 text-blue-500 ml-2" />
@@ -28,13 +64,45 @@ const Following = () => {
             >
               Truyện đã theo dõi
             </Title>
+
+            <button
+              onClick={() => setShowEdit(!showEdit)}
+              className="flex items-center"
+            >
+              {showEdit ? (
+                <>
+                  <FiTrash2
+                    onClick={handleDeleteFollowing}
+                    className="w-6 h-6 text-blue-500 mr-3"
+                  />
+                  <AiOutlineClear
+                    className="w-6 h-6 text-blue-500 mr-3"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setCheck([]);
+                    }}
+                  />
+                  <AiOutlineCloseCircle className="w-6 h-6 text-blue-500" />
+                </>
+              ) : (
+                <>
+                  <FaEdit className="w-6 h-6 text-blue-500" />
+                </>
+              )}
+            </button>
           </div>
 
           {following.length > 0 ? (
             <div className="mt-4">
               <GridLayout>
                 {following.map((item) => (
-                  <ComicsItem key={item.href} item={item} />
+                  <ComicsItem
+                    handleSelect={handleSelect}
+                    check={check}
+                    key={item.href}
+                    item={item}
+                    showEdit={showEdit}
+                  />
                 ))}
               </GridLayout>
             </div>

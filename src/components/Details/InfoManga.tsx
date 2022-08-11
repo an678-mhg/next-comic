@@ -49,7 +49,7 @@ const InfoManga: FC<PropsType> = ({ data, slug }) => {
   }, [following, slug]);
 
   return (
-    <div className="pt-4 flex-1 lg:mr-10 mr-0 text-text-color">
+    <div className="pt-4 flex-1 text-text-color">
       <div>
         <div className="mb-5 text-center">
           <h1 className="uppercase font-bold text-xl text-text-color">

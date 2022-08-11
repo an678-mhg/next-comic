@@ -28,7 +28,7 @@ const ButtonChapter: FC<ButtonChapterProps> = ({ chapters }) => {
 
   const handlePrevChap = () => {
     const pathCurrent = router.asPath.split("/read")[1];
-    const indexCurrent = chapters.findIndex(
+    const indexCurrent = chapters?.findIndex(
       (item) => item.href === pathCurrent
     );
 
@@ -46,10 +46,10 @@ const ButtonChapter: FC<ButtonChapterProps> = ({ chapters }) => {
         <button
           onClick={handlePrevChap}
           className={`py-1 px-2 w-full rounded-md  ${
-            chapters.findIndex(
+            chapters?.findIndex(
               (item) => item.href === router.asPath.split("/read")[1]
             ) >=
-            chapters.length - 1
+            chapters?.length - 1
               ? "bg-gray-500 text-gray-600 opacity-30 cursor-not-allowed"
               : "bg-primary-200 text-blue-500"
           }`}
@@ -61,7 +61,7 @@ const ButtonChapter: FC<ButtonChapterProps> = ({ chapters }) => {
         <button
           onClick={handleNextChap}
           className={`py-1 px-2 w-full rounded-md ${
-            chapters.findIndex(
+            chapters?.findIndex(
               (item) => item.href === router.asPath.split("/read")[1]
             ) <= 0
               ? "bg-gray-500 text-gray-600 opacity-30 cursor-not-allowed"

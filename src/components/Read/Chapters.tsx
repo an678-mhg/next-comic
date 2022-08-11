@@ -24,8 +24,10 @@ const Chapters: FC<PropsType> = ({ chapters, slug, showChapters }) => {
   const [isPending, startTransition] = useTransition();
 
   const chaptersMemo = useMemo(() => {
-    return chapters.filter((item) => item.name.includes(searchQuery));
-  }, [searchQuery]);
+    return chapters?.filter((item) =>
+      item.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  }, [searchQuery, chapters]);
 
   useEffect(() => {
     setSearchChap("");
@@ -60,7 +62,7 @@ const Chapters: FC<PropsType> = ({ chapters, slug, showChapters }) => {
             Đang tìm.....
           </div>
         ) : (
-          chaptersMemo.map((item) => (
+          chaptersMemo?.map((item) => (
             <li
               key={item.href}
               className={`w-full p-2 rounded-md ${

@@ -20,9 +20,11 @@ const Read = () => {
     setShowChapters((prev) => !prev);
   };
 
-  const { data, error } = useSWR(`read-${slug}-${chap}-${id}`, () =>
-    getReadApi(String(slug), String(chap), String(id))
-  );
+  const { data, error } = useSWR(`read-${slug}-${chap}-${id}`, () => {
+    if (slug && id && chap) {
+      return getReadApi(String(slug), String(chap), String(id));
+    }
+  });
 
   if (error) {
     return <Error />;
@@ -30,26 +32,25 @@ const Read = () => {
 
   return (
     <>
-      {data && (
-        <div className="flex">
-          <Meta
-            title="NextComics | Website đọc truyện tranh"
-            description="Website được tạo bởi Nextjs và Reactjs"
-            image="https://res.cloudinary.com/annnn/image/upload/v1657346489/290717828_1072115733435959_6212475330637442786_n_k49hf0.png"
-          />
-          <Chapters
-            chapters={data?.chapters}
-            slug={"/" + slug + "/" + chap + "/" + id}
-            showChapters={showChapters}
-          />
-          <ReadView
-            showChapters={showChapters}
-            results={data?.results}
-            setShowChapters={handleShowChapters}
-            chapters={data?.chapters}
-          />
-        </div>
-      )}
+      <Meta
+        title="NextComics | Website đọc truyện tranh"
+        description="Website được tạo bởi Nextjs và Reactjs"
+        image="https://res.cloudinary.com/annnn/image/upload/v1657346489/290717828_1072115733435959_6212475330637442786_n_k49hf0.png"
+      />
+
+      <div className="flex">
+        <Chapters
+          chapters={data?.chapters!}
+          slug={"/" + slug + "/" + chap + "/" + id}
+          showChapters={showChapters}
+        />
+        <ReadView
+          showChapters={showChapters}
+          results={data?.results!}
+          setShowChapters={handleShowChapters}
+          chapters={data?.chapters!}
+        />
+      </div>
     </>
   );
 };

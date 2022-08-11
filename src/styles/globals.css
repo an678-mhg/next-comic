@@ -42,6 +42,7 @@ a {
   margin-left: auto;
 }
 
+.line-clamp-3,
 .line-clamp-1,
 .line-clamp-2 {
   overflow: hidden;
@@ -55,6 +56,10 @@ a {
 
 .line-clamp-2 {
   -webkit-line-clamp: 2;
+}
+
+.line-clamp-3 {
+  -webkit-line-clamp: 3;
 }
 
 .sticky {
@@ -125,4 +130,46 @@ a {
 .ant-select-arrow,
 .anticon-close {
   color: #fff;
+}
+
+.radio-input {
+  display: none;
+}
+.radio-label {
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+  display: inline-block;
+  cursor: pointer;
+  margin: 10px 1rem;
+  transition: all 0.1s linear;
+  border: 1px solid #fff;
+}
+.radio-input:checked + .radio-label {
+  background-color: #fd656b;
+}
+
+.banner::after,
+.banner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.banner::after {
+  background: linear-gradient(
+    90deg,
+    #202125,
+    rgba(32, 33, 37, 0.6) 40%,
+    rgba(32, 33, 37, 0) 60%,
+    rgba(32, 33, 37, 0) 80%,
+    #202125
+  );
+}
+
+.banner::before {
+  background: linear-gradient(0deg, #202125, rgba(32, 33, 37, 0) 50%, #202125);
 }

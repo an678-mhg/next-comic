@@ -1,4 +1,11 @@
-import { collection, query, where, getDocs } from "firebase/firestore";
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  deleteDoc,
+  doc,
+} from "firebase/firestore";
 import { db } from "../config/firebase";
 
 export const getFollowing = async (uid: string) => {
@@ -12,4 +19,9 @@ export const getFollowing = async (uid: string) => {
   });
 
   return results;
+};
+
+export const deleteFollowingApi = async (id: string) => {
+  const docRef = `following/${id}`;
+  await deleteDoc(doc(db, docRef));
 };

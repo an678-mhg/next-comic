@@ -10,7 +10,7 @@ const Comments = () => {
   const { currentUser } = useStore();
 
   return (
-    <div>
+    <div className="container">
       <div className="mt-4">
         <Title
           position="start"

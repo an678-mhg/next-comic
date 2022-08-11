@@ -6,6 +6,9 @@ import MainLayout from "../components/Layout/MainLayout";
 import { ChevronRightIcon } from "@heroicons/react/solid";
 import useSWR from "swr";
 import Error from "../components/Error";
+import BannerComics from "../components/Comics/BannerComics";
+import Skeleton from "../components/Skeleton";
+import SliderSkeleton from "../components/Skeleton/SliderSkeleton";
 
 const Home = () => {
   const { data, error } = useSWR("home", getHomeApi);
@@ -22,9 +25,13 @@ const Home = () => {
           description="Website được tạo bởi Nextjs và Reactjs"
           image="https://res.cloudinary.com/annnn/image/upload/v1657346489/290717828_1072115733435959_6212475330637442786_n_k49hf0.png"
         />
-        <div>
+        <BannerComics />
+        <div className="container">
           {!data ? (
-            <h1>Loading....</h1>
+            <div className="py-4">
+              <SliderSkeleton />
+              <SliderSkeleton />
+            </div>
           ) : (
             Object.keys(data).map((item) => (
               <div key={item}>

@@ -4,10 +4,10 @@ import { getImage } from "../../shared/constant";
 import { MenuAlt1Icon, XIcon } from "@heroicons/react/solid";
 import { AiOutlineHome } from "react-icons/ai";
 import ButtonChapter from "./ButtonChapter";
-import { useRouter } from "next/router";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import Link from "next/link";
+import { CircularProgress } from "react-cssfx-loading";
 
 interface PropsType {
   results: ReadChap[];
@@ -49,15 +49,24 @@ const ReadView: FC<PropsType> = ({
         </div>
       </div>
 
-      {results.map((item) => (
-        <div className="md:w-[70%] mx-auto w-[calc(100%-32px)]" key={item.alt}>
-          <img
-            className="border border-black"
-            src={getImage(item.img)}
-            alt={item.alt}
-          />
+      {!results ? (
+        <div className="h-screen flex items-center justify-center">
+          <CircularProgress />
         </div>
-      ))}
+      ) : (
+        results.map((item) => (
+          <div
+            className="md:w-[70%] mx-auto w-[calc(100%-32px)]"
+            key={item.alt}
+          >
+            <img
+              className="border border-black"
+              src={getImage(item.img)}
+              alt={item.alt}
+            />
+          </div>
+        ))
+      )}
     </div>
   );
 };

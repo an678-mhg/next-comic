@@ -48,7 +48,7 @@ const Header = () => {
       id="myHeader"
       className={`py-2 shadow-sm bg-primary-200 transition-all`}
     >
-      <div className="container flex items-center justify-between">
+      <div className="flex container items-center justify-between">
         <div
           className={`md:flex block md:static fixed top-0 bottom-0 z-[9999] ${
             showMenu ? "left-0" : "left-[-100%]"
@@ -96,7 +96,7 @@ const Header = () => {
             <div>
               <Tippy
                 interactive
-                placement="bottom-start"
+                placement="bottom-end"
                 render={(attr) => (
                   <NavUser currentUser={currentUser} {...attr} />
                 )}

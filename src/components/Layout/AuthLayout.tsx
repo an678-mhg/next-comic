@@ -4,7 +4,7 @@ import useStore from "../../zustand";
 import followingStore from "../../zustand/following";
 import { auth, db } from "../../config/firebase";
 import { doc, setDoc } from "firebase/firestore";
-import { getFollowing } from "../../shared/getComicFollowing";
+import { getFollowing } from "../../shared/firebase";
 
 interface AuthLayoutProps {
   children: React.ReactNode;

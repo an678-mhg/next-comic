@@ -5,6 +5,7 @@ export interface NewChapterType {
 }
 
 export interface ComicType {
+  id?: string;
   href: string;
   name: string;
   img: string;
@@ -12,6 +13,12 @@ export interface ComicType {
   description?: string;
   newChapter?: NewChapterType;
   newChapters?: NewChapterType[];
+}
+
+export interface Banner extends ComicType {
+  info: {
+    [key: string]: string;
+  };
 }
 
 export interface ReadChap {

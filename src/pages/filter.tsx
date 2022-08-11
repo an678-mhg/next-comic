@@ -87,7 +87,7 @@ const Categories: FC<CategoriesProps> = ({ data }) => {
           description="Website được tạo bởi Nextjs và Reactjs"
           image="https://res.cloudinary.com/annnn/image/upload/v1657346489/290717828_1072115733435959_6212475330637442786_n_k49hf0.png"
         />
-        <div>
+        <div className="container">
           <div className="grid lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-4 pt-4">
             <SelectGeners
               selected={query.genres}
@@ -121,7 +121,7 @@ const Categories: FC<CategoriesProps> = ({ data }) => {
           </div>
         </div>
 
-        <div className="mt-4">
+        <div className="mt-4 container">
           {results ? (
             results?.data?.length > 0 ? (
               <GridLayout>
@@ -140,7 +140,7 @@ const Categories: FC<CategoriesProps> = ({ data }) => {
         </div>
 
         {results?.totalPage > 1 && (
-          <div className="mt-4">
+          <div className="mt-4 container">
             <Pagination
               onChange={(page) => setPage(page)}
               current={query.page || 1}

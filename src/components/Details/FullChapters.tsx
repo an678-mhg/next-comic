@@ -3,7 +3,6 @@ import { NewChapterType } from "../../models/comics";
 import Title from "../Title";
 import { MenuIcon } from "@heroicons/react/solid";
 import Link from "next/link";
-import Comments from "./Comments";
 
 interface FullChaptersProps {
   chapters: NewChapterType[];

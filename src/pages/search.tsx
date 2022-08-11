@@ -33,7 +33,7 @@ const Search = () => {
         image="https://res.cloudinary.com/annnn/image/upload/v1657346489/290717828_1072115733435959_6212475330637442786_n_k49hf0.png"
       />
       <MainLayout>
-        <div className="pt-4">
+        <div className="pt-4 container">
           <Title>Kết quả cho: {query?.keyword}</Title>
 
           <div className="mt-4">
