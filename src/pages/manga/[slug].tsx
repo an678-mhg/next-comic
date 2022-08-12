@@ -1,29 +1,20 @@
-import React, { useEffect } from "react";
+import React, { FC, useEffect } from "react";
 import { getDetailsApi } from "../../services/details";
-import { getRankApi } from "../../services/rank";
 import InfoManga from "../../components/Details/InfoManga";
-import RankMonth from "../../components/Details/RankMonth";
 import Meta from "../../components/Meta";
 import MainLayout from "../../components/Layout/MainLayout";
 import { ComicType } from "../../models/comics";
 import { addComicToLocal } from "../../shared/saveHistory";
 import Comments from "../../components/Details/Comments";
-import useSWR from "swr";
-import { useRouter } from "next/router";
-import Error from "../../components/Error";
-import SkeletonDetails from "../../components/Skeleton/SkeletonDetails";
+import { Details } from "../../models/details";
+import { GetStaticPaths, GetStaticPropsContext } from "next";
 
-const DetailManga = () => {
-  const { slug } = useRouter().query;
+interface DetailMangaProps {
+  data: Details;
+  slug: string;
+}
 
-  console.log(slug);
-
-  const { data, error } = useSWR(`details-${slug}`, () => {
-    if (slug) {
-      return getDetailsApi(String(slug));
-    }
-  });
-
+const DetailManga: FC<DetailMangaProps> = ({ data, slug }) => {
   useEffect(() => {
     if (data?.name) {
       const comic: ComicType = {
@@ -33,38 +24,52 @@ const DetailManga = () => {
       };
       addComicToLocal(comic);
     }
-  }, [slug, data]);
-
-  if (error) {
-    return <Error />;
-  }
+  }, [data]);
 
   return (
     <>
-      <>
-        <Meta
-          title={data?.name!}
-          image={data?.img!}
-          description={data?.content!}
-        />
+      <Meta
+        title={data?.name!}
+        image={data?.img!}
+        description={data?.content!}
+      />
 
-        <MainLayout>
-          {!data ? (
-            <>
-              <SkeletonDetails />
-            </>
-          ) : (
-            <>
-              <div className="flex flex-col lg:flex-row container">
-                <InfoManga data={data} slug={String(slug)} />
-              </div>
-              <Comments />
-            </>
-          )}
-        </MainLayout>
-      </>
+      <MainLayout>
+        <div className="flex flex-col lg:flex-row container">
+          <InfoManga data={data} slug={String(slug)} />
+        </div>
+        <Comments />
+      </MainLayout>
     </>
   );
+};
+
+export const getStaticPaths: GetStaticPaths = () => {
+  return {
+    paths: [],
+    fallback: "blocking",
+  };
+};
+
+export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
+  const slug = params?.slug as string;
+
+  if (slug) {
+    try {
+      const data = await getDetailsApi(slug);
+      return {
+        props: {
+          data,
+          slug,
+        },
+        revalidate: 10,
+      };
+    } catch (error) {
+      return {
+        notFound: true,
+      };
+    }
+  }
 };
 
 export default DetailManga;

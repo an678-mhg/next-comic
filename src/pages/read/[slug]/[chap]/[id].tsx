@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { getReadApi } from "../../../../services/read";
+import React, { useEffect, useState } from "react";
+import { getFullChapterApi, getReadApi } from "../../../../services/read";
 import Meta from "../../../../components/Meta";
 import Chapters from "../../../../components/Read/Chapters";
 import ReadView from "../../../../components/Read/ReadView";
@@ -26,7 +26,13 @@ const Read = () => {
     }
   });
 
-  if (error) {
+  const { data: chapters, error: errChapters } = useSWR(`read-${slug}`, () => {
+    if (slug) {
+      return getFullChapterApi(String(slug));
+    }
+  });
+
+  if (error || errChapters) {
     return <Error />;
   }
 
@@ -40,7 +46,7 @@ const Read = () => {
 
       <div className="flex">
         <Chapters
-          chapters={data?.chapters!}
+          chapters={chapters?.chapters!}
           slug={"/" + slug + "/" + chap + "/" + id}
           showChapters={showChapters}
         />
@@ -48,7 +54,7 @@ const Read = () => {
           showChapters={showChapters}
           results={data?.results!}
           setShowChapters={handleShowChapters}
-          chapters={data?.chapters!}
+          chapters={chapters?.chapters!}
         />
       </div>
     </>

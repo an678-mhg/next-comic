@@ -57,7 +57,16 @@ const Chapters: FC<PropsType> = ({ chapters, slug, showChapters }) => {
         </div>
       </div>
       <ul className="px-4 mt-4 h-[calc(100vh-120px)] overflow-y-auto scroll-none">
-        {isPending ? (
+        {!chapters ? (
+          <div>
+            {Array.from(Array(15).keys()).map((item) => (
+              <li
+                className="w-full p-2 h-[35px] rounded-md mb-4 skeleton"
+                key={item}
+              />
+            ))}
+          </div>
+        ) : isPending ? (
           <div className="p-2 bg-primary-300 rounded-md text-text-color">
             Đang tìm.....
           </div>
