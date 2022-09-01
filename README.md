@@ -2,7 +2,7 @@
 
 A comic reading website
 
-Live demo: [https://next-comics.vercel.app/](https://next-comics.vercel.app/)
+Live demo: [https://next-comicszzz.vercel.app/](https://next-comicszzz.vercel.app/)
 
 ### Features
 
