@@ -18,7 +18,7 @@ Live demo: [https://next-comicszzz.vercel.app/](https://next-comicszzz.vercel.ap
 
 ### Preview
 
-![Preview 1](https://res.cloudinary.com/annnn/image/upload/v1660056913/A%CC%89nh_chu%CC%A3p_ma%CC%80n_hi%CC%80nh_2022-08-09_215423_v6lbz4.png)
+![Preview 1](https://res.cloudinary.com/annnn/image/upload/v1662103887/A%CC%89nh_chu%CC%A3p_ma%CC%80n_hi%CC%80nh_2022-09-02_143054_bpkiyq.png)
 
 ### Technology
 
