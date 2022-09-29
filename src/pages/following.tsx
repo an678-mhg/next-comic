@@ -17,6 +17,8 @@ import { AiOutlineClear } from "react-icons/ai";
 const Following = () => {
   const { following, deleteFollow } = FollowingStore();
 
+  console.log(following);
+
   const [check, setCheck] = useState<ComicType[]>([]);
 
   const [showEdit, setShowEdit] = useState(false);
@@ -45,6 +47,8 @@ const Following = () => {
       }
       deleteFollow(item);
     });
+
+    setShowEdit(false);
   };
 
   return (

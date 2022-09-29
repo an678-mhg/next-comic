@@ -18,7 +18,10 @@ const Search = () => {
   const { data: search, error } = useSWR(
     `search-${query?.keyword}-${query?.page}`,
     () =>
-      searchApi.getSearchKeyWord(query?.keyword as string, Number(query?.page))
+      searchApi.getSearchKeyWord(
+        encodeURIComponent(query?.keyword as string),
+        Number(query?.page)
+      )
   );
 
   if (error) {

@@ -34,7 +34,9 @@ const SocialShare: FC<SocialShareProps> = ({ title }) => {
       ))}
       <Tippy content="Copy liên kết">
         <button
-          onClick={() => copyToClipboard(`${BASE_URL}${router.asPath}`)}
+          onClick={() => {
+            copyToClipboard(`${BASE_URL}${router.asPath}`);
+          }}
           className="w-8 h-8 rounded-full bg-primary-300 flex items-center justify-center"
         >
           <BsLink45Deg className="w-6 h-6 text-text-color" />

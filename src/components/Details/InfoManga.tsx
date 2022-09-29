@@ -11,6 +11,7 @@ import useStore from "../../zustand";
 import { useRouter } from "next/router";
 import { db } from "../../config/firebase";
 import { toast } from "react-toastify";
+import { CircularProgress } from "react-cssfx-loading";
 
 interface PropsType {
   data: Details;
@@ -21,10 +22,11 @@ const InfoManga: FC<PropsType> = ({ data, slug }) => {
   const { currentUser } = useStore();
   const { following, loading, addFollow } = FollowingStore();
   const [follow, setFollow] = useState(false);
+  const [loadingFollow, setLoadingFollow] = useState(false);
 
   const router = useRouter();
 
-  const handleFollowComic = (comic: any) => {
+  const handleFollowComic = async (comic: any) => {
     if (!currentUser)
       return router.push(
         `/sign-in?redirect=${encodeURIComponent(router.asPath)}`
@@ -34,14 +36,17 @@ const InfoManga: FC<PropsType> = ({ data, slug }) => {
       return toast.warn("Bạn đã theo dõi truyện này trước đó rồi!");
     }
 
+    setLoadingFollow(true);
+
     const newFollowing = {
       uid: currentUser.uid,
       ...comic,
     };
 
-    addDoc(collection(db, "following"), newFollowing);
+    const res = await addDoc(collection(db, "following"), newFollowing);
 
-    addFollow(newFollowing);
+    addFollow({ ...newFollowing, id: res.id });
+    setLoadingFollow(false);
   };
 
   useEffect(() => {
@@ -79,7 +84,15 @@ const InfoManga: FC<PropsType> = ({ data, slug }) => {
                   follow ? "bg-yellow-500" : "bg-blue-500"
                 } px-3 py-1 text-sm text-text-color rounded-md font-semibold`}
               >
-                {follow ? `Đã theo dõi ` : "Theo dõi"}
+                {loadingFollow ? (
+                  <>
+                    <CircularProgress color="#fff" width="20px" height="20px" />
+                  </>
+                ) : follow ? (
+                  "Đã theo dõi"
+                ) : (
+                  "Theo dõi"
+                )}
               </button>
             </div>
             <ul>

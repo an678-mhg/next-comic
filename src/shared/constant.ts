@@ -10,8 +10,6 @@ export const getImage = (img: string) => {
   return `${BASE_URL}/api/handler?url=${encodeURIComponent(img)}`;
 };
 
-export const api = "https://manga-api-production.up.railway.app";
-
 export const calculateCreatedTime = (timeCreated: any) => {
   let periods: any = {
     year: 365 * 30 * 24 * 60 * 60 * 1000,

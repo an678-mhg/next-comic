@@ -62,7 +62,7 @@ export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
           data,
           slug,
         },
-        revalidate: 10,
+        revalidate: 1,
       };
     } catch (error) {
       return {

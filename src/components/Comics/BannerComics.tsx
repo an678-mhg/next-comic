@@ -20,9 +20,8 @@ const BannerComics = () => {
         <div className="lg:h-[450px] md:h-[350px] h-[250px] skeleton w-full"></div>
       ) : (
         <Swiper
-          navigation
           autoplay={{ delay: 5000 }}
-          modules={[Navigation, Autoplay]}
+          modules={[Autoplay]}
           className="mySwiper"
           slidesPerView={1}
         >

@@ -46,7 +46,7 @@ const Header = () => {
   return (
     <div
       id="myHeader"
-      className={`py-2 shadow-sm bg-primary-200 transition-all`}
+      className={`py-3 shadow-sm bg-primary-200 transition-all`}
     >
       <div className="flex container items-center justify-between">
         <div
@@ -56,8 +56,8 @@ const Header = () => {
         >
           <Link href="/">
             <a className="flex items-center md:flex-row flex-col">
-              <h1 className="text-2xl font-bold text-text-color mb-0 md:mr-10 mr-0 w-full p-4 md:p-0">
-                NextComics
+              <h1 className="text-2xl font-bold text-text-color mb-0 md:mr-10 mr-0 w-full p-4 md:p-0 flex items-center">
+                <img className="w-10 h-10" src="/icon.png" />
               </h1>
             </a>
           </Link>
